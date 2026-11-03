@@ -208,6 +208,26 @@ nav:not(.s) .btn.p:hover{background:#40AA56;border-color:#40AA56}
 #specs.sec{padding-bottom:18px}
 #specs.sec+.term-note{padding:0 0 36px;background:var(--alt)}
 #specs.sec+.term-note .wrap{padding-top:14px;border-top:1px solid var(--line)}
+#contact.sec{background:#F4F8F6}
+.pre-footer{position:relative;z-index:3;padding:36px 24px 28px;background:#000;color:#fff}
+.pre-footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;max-width:1464px;margin:0 auto}
+.pre-footer-brand{flex:0 0 auto}
+.pre-footer-logo{display:inline-flex;line-height:0}
+.pre-footer-logo img{display:block;width:148px;height:auto;filter:brightness(0) invert(1)}
+.pre-footer-brand p{margin:22px 0 0;color:#fff;font-size:12px;line-height:1.45}
+.pre-footer-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:18px 32px;padding-top:16px}
+.pre-footer-links a{color:#fff;font-size:13px;text-decoration:none;white-space:nowrap;transition:color .18s ease}
+.pre-footer-links a:hover{color:#CCE9E2}
+footer{padding:16px 24px;background:#000;color:#aaa;border-top:1px solid rgba(255,255,255,.16);text-align:left;font-size:12px}
+.live-chat{position:fixed;right:24px;bottom:24px;z-index:40;display:inline-flex;align-items:center;gap:9px;padding:13px 18px;border:1px solid #D6D6D6;border-radius:14px;background:#fff;color:#19483E;box-shadow:0 8px 24px rgba(0,0,0,.18);font:700 14px Roboto,Arial,sans-serif;cursor:pointer;transition:transform .18s ease,border-color .18s ease}
+.live-chat:hover{transform:translateY(-2px);border-color:#01916D}
+.live-chat:focus-visible{outline:3px solid #01916D;outline-offset:3px}
+.live-chat-dot{width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:#01916D}
+.chat-placeholder{position:fixed;right:24px;bottom:82px;z-index:40;width:min(280px,calc(100vw - 32px));padding:16px;border:1px solid #D6D6D6;border-radius:8px;background:#fff;color:#333;box-shadow:0 12px 32px rgba(0,0,0,.18);font-size:14px;line-height:1.5}
+.chat-placeholder p{margin:0}
+.chat-placeholder a{color:#01916D;font-weight:700}
+.chat-placeholder[hidden]{display:none}
+@media(max-width:700px){.pre-footer{padding:30px 20px 24px}.pre-footer-inner{flex-direction:column;gap:24px}.pre-footer-links{justify-content:flex-start;gap:14px 22px;padding-top:0}.pre-footer-brand p{margin-top:16px}.live-chat{right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px)}.chat-placeholder{right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 74px)}}
 </style>
 </head>
 <body>
@@ -255,7 +275,11 @@ nav:not(.s) .btn.p:hover{background:#40AA56;border-color:#40AA56}
 <section class="campaign-step" data-step="4" aria-labelledby="campaign-title-5" hidden><h3 id="campaign-title-5" tabindex="-1">Your demo brief is ready</h3><p>Give it a quick look. Go back to change anything before you finish.</p><dl class="campaign-review" id="campaign-review"></dl><p style="font-size:13px;margin:0;color:var(--mute)">This is a prototype. Your details stay in this browser and no request will be sent.</p></section><p id="campaign-error" class="campaign-error" role="alert" aria-live="polite"></p>
 <div class="campaign-nav"><button class="btn g" id="campaign-back" type="button" disabled>Back</button><button class="btn p" id="campaign-next" type="button">Let’s plan it <span aria-hidden="true">→</span></button></div></div></form></div></section>
 <section class="notes"><div class="wrap"><ul class="note"><li>*1 70 pages per minute is the speed for A4 printed long edge first (A4 LEF). Speeds may be reduced by image quality adjustment.</li><li>*2 Services vary by region. Please ask a sales representative for details.</li><li>*4 Scan speed is for standard A4 LEF documents at 200 or 300 dpi, scanned to a folder. It varies with the documents.</li><li>*3 Paper tray capacity is based on 80 gsm paper. Output tray and side tray capacities are based on 70 gsm paper.</li></ul></div></section>
+<section class="pre-footer" aria-label="FUJIFILM contact information"><div class="pre-footer-inner"><div class="pre-footer-brand"><a class="pre-footer-logo" href="#top" aria-label="FUJIFILM Business Innovation"><img src="fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a><p>© FUJIFILM BUSINESS INNOVATION SINGAPORE PTE. LTD.</p></div><div class="pre-footer-links" role="navigation" aria-label="Footer links"><a href="https://www.fujifilm.com/fbsg/en/privacy">Privacy Policy</a><a href="https://www.fujifilm.com/fbsg/en/Terms-of-Use">Terms &amp; Conditions</a><a href="https://www.fujifilm.com/fbsg/en/socialmedia">Social Media Policy</a><a href="https://www.fujifilm.com/fbsg/en/contact">Contact</a></div></div></section>
 <footer>Apeos is a trademark of FUJIFILM Business Innovation Corp. Specifications from the Apeos C7072 brochure (October 2026). Interactive prototype.</footer>
+<button class="live-chat" id="live-chat-toggle" type="button" aria-expanded="false" aria-controls="chat-placeholder"><span class="live-chat-dot" aria-hidden="true"></span>Live Chat</button>
+<div class="chat-placeholder" id="chat-placeholder" role="status" hidden><p>Live chat is not connected yet. You can <a href="#contact">request a demo</a> instead.</p></div>
+<script>(function(){var button=document.getElementById('live-chat-toggle'),panel=document.getElementById('chat-placeholder');if(!button||!panel)return;button.addEventListener('click',function(){var open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));panel.hidden=open;});document.addEventListener('click',function(event){if(!button.contains(event.target)&&!panel.contains(event.target)){button.setAttribute('aria-expanded','false');panel.hidden=true;}});document.addEventListener('keydown',function(event){if(event.key==='Escape'){button.setAttribute('aria-expanded','false');panel.hidden=true;}});})();</script>
 <div id="fallback" style="display:none;position:fixed;inset:0;z-index:30;padding:80px 24px;background:var(--bg);overflow:auto"><h2>Printer</h2><p>3D view needs WebGL. Parts: document feeder, touchscreen, output bay, print engine, trays 1–4.</p></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
