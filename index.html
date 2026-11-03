@@ -21,7 +21,7 @@ nav.s{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:bl
 nav.h{transform:translateY(calc(-100% - 4px));pointer-events:none}nav.h:focus-within{transform:translateY(0);pointer-events:auto}
 nav b{letter-spacing:.16em;text-transform:uppercase;font-size:13px;margin-right:auto;display:flex;align-items:center;gap:10px}nav b i{width:22px;height:22px;border-radius:6px;background:var(--acc);display:block}
 nav a{color:inherit;text-decoration:none;font-size:14px;opacity:.85}nav a:hover{opacity:1}
-.btn{display:inline-block;padding:13px 24px;border-radius:999px;font-weight:600;font-size:14px;text-decoration:none;transition:transform .2s}.btn:hover{transform:translateY(-2px)}
+.btn{display:inline-block;padding:13px 24px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;transition:transform .2s}.btn:hover{transform:translateY(-2px)}
 .btn.p{background:var(--acc);color:#fff!important;opacity:1}.btn.g{border:1.5px solid currentColor}
 .hero{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 24px 150px;pointer-events:none;color:var(--hi);transition:opacity .5s}
 .hero a{pointer-events:auto}body.f .hero{opacity:0}.hc{max-width:540px;margin-left:max(0px,calc((100% - 1180px)/2))}
@@ -42,6 +42,7 @@ h1{font-size:clamp(38px,6vw,72px);line-height:1.02;letter-spacing:-.03em;margin:
 h2{font-size:clamp(28px,4vw,46px);line-height:1.1;letter-spacing:-.02em;margin:0 0 14px}.sub{color:var(--mute);font-size:17px;line-height:1.6;max-width:640px;margin:0 0 40px}.dk .sub{color:#D6D6D6}
 .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}.cd{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:28px}.cd svg{width:34px;height:34px;stroke:var(--acc);fill:none;stroke-width:1.7;margin-bottom:14px}
 .cd h3{margin:0 0 8px;font-size:19px}.cd p{margin:0;color:var(--mute);line-height:1.55;font-size:15px}
+.cd p+.btn{margin-top:16px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:90px}.row.r .tx{order:2}.tx h3{font-size:30px;margin:0 0 12px;letter-spacing:-.02em}.tx p{color:var(--mute);line-height:1.65;font-size:16px}
 .feature-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line);margin:34px 0 0}
 .feature-tab{display:flex;align-items:center;gap:12px;min-width:0;padding:16px 14px;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;background:transparent;color:#5C5C5C;text-align:left;font:inherit;cursor:pointer;transition:color .2s,border-color .2s}
@@ -182,10 +183,35 @@ body.f #explore .xt{opacity:0;pointer-events:none}
 #office .ph img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;transform:none!important}
 #office .office-caption{grid-row:3}
 @media(max-width:900px){#office.sec{padding:0 0 72px}#office .office-copy{grid-column:1;grid-row:1;padding:28px 20px 24px}#office .ph:first-of-type,#office .ph:nth-of-type(2),#office .office-caption-one,#office .office-caption-two{grid-column:1;grid-row:auto}}
+.btn.p{background:#01916D;color:#fff!important;border:1px solid #01916D;box-shadow:none;transition:background-color .2s,border-color .2s,transform .2s}
+.btn.p:hover{background:#40AA56;border-color:#40AA56}
+.hero2 .btn.p{background:#01916D;color:#fff!important;border-color:#01916D}
+.hero2 .btn.p:hover{background:#40AA56;border-color:#40AA56}
+#contact form{max-width:1040px;width:100%;margin:0 auto}
+#contact .campaign{max-width:none}
+nav{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;background:transparent;color:#fff}
+nav .logo-bar{display:flex;align-items:center;justify-content:center;height:58px;background:#fff;transition:height .2s ease}
+nav .logo-bar a{display:flex;align-items:center;line-height:0;opacity:1}
+nav .logo-bar img{display:block;width:132px;height:auto;transition:width .2s ease}
+nav .nav-menu{display:flex;align-items:center;gap:28px;height:60px;min-height:60px;padding:8px 28px 14px;background:transparent;color:#fff;overflow:hidden;transition:height .24s ease,min-height .24s ease,padding .24s ease,opacity .18s ease,transform .24s ease}
+nav.h{transform:none;pointer-events:auto}
+nav.h .nav-menu{height:0;min-height:0;padding-top:0;padding-bottom:0;opacity:0;transform:translateY(-8px);pointer-events:none}
+nav.s .logo-bar{height:46px}
+nav.s .logo-bar img{width:104px}
+nav.s .nav-menu{color:#333}
+nav .nav-menu>a.l{transition:color .18s ease,opacity .18s ease}
+nav:not(.s) .nav-menu>a.l:hover{color:#CCE9E2}
+nav.s .nav-menu>a.l:hover{color:#01916D}
+nav:not(.s) .btn.p:hover{background:#40AA56;border-color:#40AA56}
+@media(max-width:900px){nav .logo-bar{height:52px}nav .logo-bar img{width:118px}nav.s .logo-bar{height:42px}nav.s .logo-bar img{width:94px}nav .nav-menu{gap:14px;padding:8px 16px 10px}nav .nav-menu>a{font-size:12px}}
+#film.sec{background:linear-gradient(135deg,#014937 0%,#006B52 52%,#01916D 100%)}
+#specs.sec{padding-bottom:18px}
+#specs.sec+.term-note{padding:0 0 36px;background:var(--alt)}
+#specs.sec+.term-note .wrap{padding-top:14px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
-<nav><b><i></i>Apeos C7072</b><a class="l" href="#explore">Explore</a><a class="l" href="#film">Film</a><a class="l" href="#features">Features</a><a class="l" href="#office">In the office</a><a class="l" href="#support">Support</a><a class="l" href="#specs">Specs</a><a class="btn p" href="#contact">Request a demo</a></nav>
+<nav><div class="logo-bar"><a href="#top" aria-label="FUJIFILM Business Innovation"><img src="fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a></div><div class="nav-menu"><b><i></i>Apeos C7072</b><a class="l" href="#explore">Explore</a><a class="l" href="#film">Film</a><a class="l" href="#features">Features</a><a class="l" href="#office">In the office</a><a class="l" href="#support">Support</a><a class="l" href="#specs">Specs</a><a class="btn p" href="#contact">Request a demo</a></div></nav>
 <header class="hero2" id="top"><div class="hero-video" aria-hidden="true"><video class="is-active" autoplay muted playsinline preload="metadata" data-clip="0" src="7792036-hd_1920_1080_25fps.mp4"></video><video muted playsinline preload="metadata" data-clip="1" src="7710602-uhd_4096_2160_25fps.mp4"></video></div><div class="wrap"><div class="hc"><p class="ey">Introducing the Apeos C7072</p><h1>A3 colour for busy offices.</h1><p class="lead">Four reasons it fits the way your office works.</p><div class="cta"><a class="btn p" href="#contact">Request a demo</a><a class="btn g" href="#fit">Find the right setup</a></div></div></div></header>
 <section class="usp" aria-label="Apeos C7072 highlights"><div class="usp-grid"><div class="rv"><button class="usp-toggle" type="button" aria-expanded="false"><span class="usp-metric"><strong><span data-n="70">0</span></strong><small>pages per minute<sup>*1</sup></small></span></button><div class="usp-details" aria-hidden="true" inert><div class="usp-details-inner"><h3>Fast A3 colour</h3><p>Up to 70 pages per minute in colour and black and white, with a warm-up time of 20 seconds or less.</p></div></div></div>
 <div class="rv"><button class="usp-toggle" type="button" aria-expanded="false"><span class="usp-metric"><strong><span data-n="3210">0</span></strong><small>sheets as standard<sup>*3</sup></small></span></button><div class="usp-details" aria-hidden="true" inert><div class="usp-details-inner"><h3>Paper for long runs</h3><p>Four trays and a 100-sheet bypass tray, and up to 5,210 sheets with the optional High Capacity Feeder B1.</p></div></div></div>
