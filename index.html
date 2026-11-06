@@ -1196,6 +1196,181 @@ padding:8px 14px!important;
 }
 #fm #campaign-next{order:1!important}
 #fm #campaign-back{order:2!important}
+}/* mobile-remediation-v4 */
+@media(max-width:700px){
+
+/* =========================
+   USP EXPANDED CARD
+   ========================= */
+
+/* Collapsed cards remain compact */
+.usp-grid>div:not(.active){
+  height:126px!important;
+  min-height:126px!important;
+  overflow:hidden!important;
+}
+
+/* Expanded card uses the full row and must never clip */
+.usp-grid>div.active{
+  grid-column:1 / -1!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+
+/* Expanded header can grow naturally */
+.usp-grid>div.active .usp-toggle{
+  height:auto!important;
+  min-height:104px!important;
+  padding:16px!important;
+}
+
+/* Full detail copy must display */
+.usp-grid>div.active .usp-details{
+  display:block!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding:0 16px 18px!important;
+}
+
+.usp-grid>div.active .usp-details-inner{
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+
+.usp-grid>div.active .usp-details h3{
+  margin:0 0 8px!important;
+  font-size:18px!important;
+  line-height:1.25!important;
+}
+
+.usp-grid>div.active .usp-details p{
+  display:block!important;
+  margin:0!important;
+  font-size:14px!important;
+  line-height:1.55!important;
+  overflow:visible!important;
+  white-space:normal!important;
+}
+
+/* =========================
+   STANDARD SLIDER INDICATOR
+   ========================= */
+
+.mobile-dots{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  width:100%!important;
+  margin:12px 0 2px!important;
+  min-height:10px!important;
+}
+
+.mobile-dots i{
+  display:block!important;
+  flex:0 0 auto!important;
+  width:7px!important;
+  height:7px!important;
+  border-radius:999px!important;
+  background:#c4cccd!important;
+  transition:
+    width .2s ease,
+    background-color .2s ease!important;
+}
+
+.mobile-dots i.active{
+  width:19px!important;
+  background:#01916D!important;
+}
+
+/* Remove old static Recognition ellipsis */
+.recognition-certifications-v2 .wrap::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Recognition follows same slider language */
+.credential-strip{
+  scroll-snap-type:x mandatory!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+
+/* =========================
+   EXPLORE INSTRUCTION PANEL
+   ========================= */
+
+#explore{
+  min-height:680px!important;
+}
+
+/* Full-width readable strip across top */
+#explore .xt{
+  left:12px!important;
+  right:12px!important;
+  top:12px!important;
+
+  width:auto!important;
+  max-width:none!important;
+
+  padding:12px 14px 13px!important;
+
+  border-radius:8px!important;
+  background:rgba(255,255,255,.94)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+
+  box-shadow:0 8px 24px rgba(0,0,0,.08)!important;
+
+  box-sizing:border-box!important;
+}
+
+/* Keep label subtle */
+#explore .xt .ey{
+  margin:0 0 4px!important;
+  font-size:9px!important;
+  line-height:1.2!important;
+  letter-spacing:.09em!important;
+}
+
+/* Readable product heading */
+#explore .xt h2{
+  margin:0 0 5px!important;
+
+  font-size:18px!important;
+  line-height:1.08!important;
+
+  white-space:normal!important;
+}
+
+/* No decorative line wasting vertical space */
+#explore .xt h2::after{
+  display:none!important;
+}
+
+/* Instruction stays readable without making panel tall */
+#explore .xt .sub{
+  max-width:none!important;
+  margin:0!important;
+
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+
+/* Preserve known-good hotspot stacking */
+#explore .hs{
+  z-index:4!important;
+}
+
+#explore #stage{
+  min-height:680px!important;
+}
+
 }</style>
 <!-- seo-fix-v2 -->
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -1586,6 +1761,81 @@ if(captions[i])slide.appendChild(captions[i]);
 makeDots(ot,2);
 }
 }
+})();
+</script><script id="mobile-remediation-v4">
+(function(){
+
+if(window.innerWidth > 700) return;
+
+/* Add the same live indicator used by the other sliders
+   to Recognition & Certifications. */
+
+var track=document.querySelector(".credential-strip");
+
+if(!track) return;
+if(track.dataset.mobileDotsV4) return;
+
+var cards=Array.from(track.children).filter(function(el){
+  return el.tagName && el.tagName.toLowerCase()==="article";
+});
+
+if(cards.length < 2) return;
+
+track.dataset.mobileDotsV4="1";
+
+var dots=document.createElement("div");
+dots.className="mobile-dots recognition-mobile-dots";
+dots.setAttribute("aria-hidden","true");
+
+cards.forEach(function(card,index){
+  var dot=document.createElement("i");
+  if(index===0) dot.className="active";
+  dots.appendChild(dot);
+});
+
+track.parentNode.insertBefore(dots,track.nextSibling);
+
+function updateDots(){
+
+  var centre=track.scrollLeft+(track.clientWidth/2);
+  var active=0;
+  var closest=Infinity;
+
+  cards.forEach(function(card,index){
+
+    var cardCentre=card.offsetLeft+(card.offsetWidth/2);
+    var distance=Math.abs(cardCentre-centre);
+
+    if(distance < closest){
+      closest=distance;
+      active=index;
+    }
+
+  });
+
+  Array.from(dots.children).forEach(function(dot,index){
+    dot.classList.toggle("active",index===active);
+  });
+
+}
+
+var ticking=false;
+
+track.addEventListener("scroll",function(){
+
+  if(ticking) return;
+
+  ticking=true;
+
+  requestAnimationFrame(function(){
+    ticking=false;
+    updateDots();
+  });
+
+},{passive:true});
+
+updateDots();
+
 })();
 </script></body>
 </html>
