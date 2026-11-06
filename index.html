@@ -2189,7 +2189,7 @@ if(mixer)mixer.update(0);
     i.el.style.transform='translate('+((s.x*.5+.5)*XW)+'px,'+((-s.y*.5+.5)*XH)+'px)';
     var inView=s.x>=-1&&s.x<=1&&s.y>=-1&&s.y<=1&&s.z>=-1&&s.z<=1,visible=!focus&&inView&&ready&&!full;
     if(checkHotspots&&visible){var distance=hotspotPoint.distanceTo(C.position);hotspotRayDirection.subVectors(hotspotPoint,C.position).normalize();hotspotRaycaster.set(C.position,hotspotRayDirection);hotspotRaycaster.far=Math.max(0,distance-.4);i.occluded=hotspotRaycaster.intersectObjects(pickMeshes,false).length>0;}
-    i.el.classList.toggle('off',!visible);});
+    i.el.classList.toggle('off',!visible||!!i.occluded);});
   R.render(S,C);if(needsFrame())scheduleFrame();}
 scheduleFrame();
 
