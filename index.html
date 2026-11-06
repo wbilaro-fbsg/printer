@@ -1893,6 +1893,23 @@ nav.h .nav-menu{
     left:14px!important;
     bottom:14px!important;
   }
+}/* hero-cta-nowrap-v1 */
+
+/* Keep secondary hero CTA on one line */
+.hero2 .cta .btn.g{
+  white-space:nowrap!important;
+  flex-shrink:0!important;
+}
+
+/* Mobile: slightly reduce CTA typography rather than wrapping */
+@media(max-width:700px){
+  .hero2 .cta .btn{
+    font-size:11.5px!important;
+    letter-spacing:-.01em!important;
+    padding-left:6px!important;
+    padding-right:6px!important;
+    white-space:nowrap!important;
+  }
 }</style>
 <!-- seo-fix-v2 -->
 <meta name="robots" content="index,follow,max-image-preview:large">
