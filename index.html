@@ -166,7 +166,7 @@ html.pre .hero2 .ey,html.pre .hero2 h1,html.pre .hero2 .lead,html.pre .hero2 .ct
 #explore{position:relative;z-index:3;height:min(100svh,940px);min-height:600px;overflow:hidden;background:#e8ebea}
 #explore #bgi{display:none}
 #explore #stage{position:absolute;inset:0;z-index:1;pointer-events:none;will-change:auto}
-#explore .hs{position:absolute}
+#explore .hs{position:absolute;z-index:4}
 #explore .xt{position:absolute;z-index:2;left:28px;top:32px;width:min(320px,calc(100% - 56px));max-width:320px;padding:14px 18px 16px;background:rgba(255,255,255,.92);border-radius:14px;transition:opacity .4s}
 #explore .xt h2{margin:0 0 6px;font-size:24px}#explore .xt h2::after{content:"";display:block;height:4px;margin:8px 0 10px;background:var(--gl)}#explore .xt .sub{margin:0;font-size:14px;line-height:1.5}
 body.f #explore .xt{opacity:0;pointer-events:none}
@@ -758,7 +758,7 @@ if(mixer)mixer.update(0);
     i.el.style.transform='translate('+((s.x*.5+.5)*XW)+'px,'+((-s.y*.5+.5)*XH)+'px)';
     var inView=s.x>=-1&&s.x<=1&&s.y>=-1&&s.y<=1&&s.z>=-1&&s.z<=1,visible=!focus&&inView&&ready&&!full;
     if(checkHotspots&&visible){var distance=hotspotPoint.distanceTo(C.position);hotspotRayDirection.subVectors(hotspotPoint,C.position).normalize();hotspotRaycaster.set(C.position,hotspotRayDirection);hotspotRaycaster.far=Math.max(0,distance-.4);i.occluded=hotspotRaycaster.intersectObjects(pickMeshes,false).length>0;}
-    i.el.classList.toggle('off',!visible||!!i.occluded);});
+    i.el.classList.toggle('off',!visible);});
   R.render(S,C);if(needsFrame())scheduleFrame();}
 scheduleFrame();
 
