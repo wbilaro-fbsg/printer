@@ -2041,6 +2041,216 @@ nav.h .nav-menu{
   color:#01916D!important;
 }
 
+}/* c7072-pin-gate-v1 */
+html.pin-locked,
+html.pin-locked body{
+  overflow:hidden!important;
+}
+
+#preview-pin-gate{
+  position:fixed;
+  inset:0;
+  z-index:2147483647;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:24px;
+
+  background:
+    radial-gradient(circle at 85% 10%,rgba(1,145,109,.12),transparent 32%),
+    #f4f6f5;
+
+  font-family:'Clarimo UD PE',Arial,Helvetica,sans-serif;
+}
+
+#preview-pin-gate[hidden]{
+  display:none!important;
+}
+
+.pin-panel{
+  width:min(100%,420px);
+  padding:34px;
+
+  background:#fff;
+  border:1px solid #d8dede;
+  border-radius:12px;
+
+  box-shadow:0 24px 70px rgba(20,35,32,.12);
+}
+
+.pin-brand{
+  margin:0 0 32px;
+}
+
+.pin-brand img{
+  display:block;
+  width:auto;
+  height:32px;
+  max-width:190px;
+}
+
+.pin-ey{
+  margin:0 0 8px;
+
+  color:#007c69;
+
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.pin-panel h1{
+  margin:0 0 12px;
+
+  color:#202827;
+
+  font-size:30px;
+  line-height:1.08;
+  font-weight:400;
+}
+
+.pin-intro{
+  margin:0 0 24px;
+
+  color:#687271;
+
+  font-size:14px;
+  line-height:1.55;
+}
+
+.pin-label{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:#303938;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+#preview-pin{
+  display:block;
+
+  width:100%;
+  height:50px;
+
+  padding:0 14px;
+
+  box-sizing:border-box;
+
+  border:1.5px solid #afb8b7;
+  border-radius:6px;
+
+  background:#fff;
+  color:#202827;
+
+  font:700 20px/1 'Clarimo UD PE',Arial,Helvetica,sans-serif;
+  letter-spacing:.22em;
+  text-align:center;
+}
+
+#preview-pin:focus{
+  border-color:#01916D;
+  outline:3px solid rgba(1,145,109,.15);
+}
+
+.pin-submit{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+  height:46px;
+
+  margin-top:12px;
+
+  border:1px solid #01916D;
+  border-radius:6px;
+
+  background:#01916D;
+  color:#fff;
+
+  font:700 14px/1 'Clarimo UD PE',Arial,Helvetica,sans-serif;
+
+  cursor:pointer;
+}
+
+.pin-submit:hover{
+  background:#007c5e;
+  border-color:#007c5e;
+}
+
+.pin-submit:focus-visible{
+  outline:3px solid rgba(1,145,109,.24);
+  outline-offset:3px;
+}
+
+#pin-error{
+  min-height:20px;
+
+  margin:10px 0 0;
+
+  color:#b3261e;
+
+  font-size:13px;
+  line-height:1.4;
+}
+
+.pin-note{
+  margin:22px 0 0;
+  padding-top:18px;
+
+  border-top:1px solid #e1e5e4;
+
+  color:#7a8382;
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+@media(max-width:700px){
+  #preview-pin-gate{
+    align-items:flex-start;
+
+    padding:
+      max(28px,env(safe-area-inset-top))
+      16px
+      max(20px,env(safe-area-inset-bottom));
+  }
+
+  .pin-panel{
+    width:100%;
+
+    margin-top:7vh;
+    padding:26px 20px;
+
+    border-radius:10px;
+  }
+
+  .pin-brand{
+    margin-bottom:26px;
+  }
+
+  .pin-brand img{
+    height:27px;
+  }
+
+  .pin-panel h1{
+    font-size:27px;
+  }
+
+  #preview-pin{
+    height:52px;
+    font-size:20px;
+  }
+
+  .pin-submit{
+    height:48px;
+  }
 }</style>
 <!-- seo-fix-v2 -->
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -2053,7 +2263,41 @@ nav.h .nav-menu{
 {"@context":"https://schema.org","@type":"Product","name":"Apeos C7072","brand":{"@type":"Brand","name":"FUJIFILM Business Innovation"},"description":"A new generation multifunction printer powered by Cloud and AI for connected document workflows.","category":"A3 colour multifunction printer"}
 </script>
 </head>
-<body><a class="skip-link" href="#top">Skip to main content</a>
+<body><div id="preview-pin-gate" role="dialog" aria-modal="true" aria-labelledby="pin-title">
+  <form class="pin-panel" id="preview-pin-form">
+    <div class="pin-brand">
+      <img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation">
+    </div>
+
+    <p class="pin-ey">PRIVATE CAMPAIGN PREVIEW</p>
+
+    <h1 id="pin-title">Apeos C7072</h1>
+
+    <p class="pin-intro">
+      Enter the preview PIN to continue.
+    </p>
+
+    <label class="pin-label" for="preview-pin">6-digit PIN</label>
+
+    <input
+      id="preview-pin"
+      type="password"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      maxlength="6"
+      autocomplete="one-time-code"
+      aria-describedby="pin-error"
+      required>
+
+    <button class="pin-submit" type="submit">View campaign</button>
+
+    <p id="pin-error" role="alert" aria-live="polite"></p>
+
+    <p class="pin-note">
+      Internal preview only. Please do not distribute this URL publicly.
+    </p>
+  </form>
+</div><a class="skip-link" href="#top">Skip to main content</a>
 <nav><div class="logo-bar"><a href="#top" aria-label="FUJIFILM Business Innovation"><img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a></div><div class="nav-menu"><b><i></i>Apeos C7072</b><a class="l" href="#explore">Explore Apeos</a><a class="l" href="#film">Cloud + AI</a><a class="l" href="#features">What's New</a><a class="l" href="#office">Why Upgrade</a><a class="l" href="#specs">Specifications</a><a class="btn p" href="#contact">Request a demo</a></div></nav>
 <header class="hero2" id="top"><div class="hero-video" aria-hidden="true"><video class="is-active" autoplay muted playsinline preload="metadata" data-clip="0" src="final-assets/01-Approved-Assets/video/ai/203986-923133871_medium.mp4"></video><video muted playsinline preload="metadata" data-clip="1" src="final-assets/01-Approved-Assets/video/ai/203987-923133879_medium.mp4"></video><video muted playsinline preload="auto" data-clip="2" src="final-assets/01-Approved-Assets/video/ai/240062.mp4"></video></div><script id="hero-loop-fix-v3">
 (function(){
@@ -2518,6 +2762,66 @@ track.addEventListener("scroll",function(){
 },{passive:true});
 
 updateDots();
+
+})();
+</script><script id="c7072-pin-gate-v1">
+(function(){
+
+  var KEY='c7072-preview-access-v1';
+  var PIN='122200';
+
+  var gate=document.getElementById('preview-pin-gate');
+  var form=document.getElementById('preview-pin-form');
+  var input=document.getElementById('preview-pin');
+  var error=document.getElementById('pin-error');
+
+  if(!gate||!form||!input)return;
+
+  function unlock(){
+    document.documentElement.classList.remove('pin-locked');
+    gate.hidden=true;
+
+    try{
+      sessionStorage.setItem(KEY,'1');
+    }catch(e){}
+
+    window.scrollTo(0,0);
+  }
+
+  var unlocked=false;
+
+  try{
+    unlocked=sessionStorage.getItem(KEY)==='1';
+  }catch(e){}
+
+  if(unlocked){
+    unlock();
+    return;
+  }
+
+  document.documentElement.classList.add('pin-locked');
+
+  requestAnimationFrame(function(){
+    input.focus();
+  });
+
+  input.addEventListener('input',function(){
+    input.value=input.value.replace(/\D/g,'').slice(0,6);
+    error.textContent='';
+  });
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+
+    if(input.value===PIN){
+      unlock();
+      return;
+    }
+
+    error.textContent='Incorrect PIN. Please try again.';
+    input.value='';
+    input.focus();
+  });
 
 })();
 </script></body>
