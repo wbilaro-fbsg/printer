@@ -986,6 +986,188 @@ updateDots();
   });
 
 })();
+</script><script id="mobile-ux-v7">
+(function(){
+
+if(window.innerWidth>700)return;
+
+/* ---------------------------------------------------------
+   NAV
+   Move burger into actual second-row nav-menu
+   --------------------------------------------------------- */
+
+var nav=document.querySelector('nav');
+var navMenu=nav&&nav.querySelector('.nav-menu');
+var burger=nav&&nav.querySelector('.mobile-nav-toggle');
+var mobileMenu=nav&&nav.querySelector('.mobile-site-nav');
+
+if(navMenu&&burger){
+  navMenu.appendChild(burger);
+}
+
+if(navMenu&&mobileMenu){
+  navMenu.appendChild(mobileMenu);
+}
+
+
+/* ---------------------------------------------------------
+   ECOSYSTEM
+   Build swipe cards from the existing verified content
+   --------------------------------------------------------- */
+
+var flow=document.querySelector('#ecosystem .eco-flow');
+var rail=flow&&flow.querySelector('.eco-flow-rail');
+var steps=flow?Array.from(flow.querySelectorAll('.eco-flow-step')):[];
+
+if(!flow||!rail||steps.length<2)return;
+
+var content=[
+{
+number:'01',
+label:'CAPTURE',
+title:'Turn workplace documents into digital information',
+copy:'Apeos C7072 digitises workplace documents so information can move into connected business workflows.'
+},
+{
+number:'02',
+label:'UNDERSTAND',
+title:'Prepare information for business use',
+copy:'Classify and organise captured information so teams can find it, understand it and put it to work.'
+},
+{
+number:'03',
+label:'CONNECT',
+title:'Link information with the tools your teams use',
+copy:'Connect captured information with cloud services, business applications and shared workflows.'
+},
+{
+number:'04',
+label:'AUTOMATE',
+title:'Reduce repetitive document handling',
+copy:'Use connected workflows to reduce manual routing, repeated data handling and routine processing.'
+},
+{
+number:'05',
+label:'ACT',
+title:'Move information and decisions forward',
+copy:'Make captured information easier to access, reuse and turn into meaningful business action.'
+}
+];
+
+var cards=flow.querySelector('.eco-mobile-cards');
+
+if(!cards){
+
+  cards=document.createElement('div');
+  cards.className='eco-mobile-cards';
+
+  content.forEach(function(item,index){
+
+    var card=document.createElement('article');
+    card.className='eco-mobile-card';
+    card.dataset.index=String(index);
+
+    var number=document.createElement('div');
+    number.className='eco-mobile-card-number';
+    number.textContent=item.number;
+
+    var label=document.createElement('p');
+    label.className='eco-mobile-card-label';
+    label.textContent=item.label;
+
+    var title=document.createElement('h3');
+    title.textContent=item.title;
+
+    var copy=document.createElement('p');
+    copy.textContent=item.copy;
+
+    card.appendChild(number);
+    card.appendChild(label);
+    card.appendChild(title);
+    card.appendChild(copy);
+
+    cards.appendChild(card);
+  });
+
+  rail.insertAdjacentElement('afterend',cards);
+}
+
+var cardList=Array.from(cards.children);
+var dots=Array.from(flow.querySelectorAll('.eco-flow-dots i'));
+
+function setActive(index,scrollTab){
+
+  index=Math.max(0,Math.min(index,steps.length-1));
+
+  steps.forEach(function(step,i){
+    var active=i===index;
+    step.classList.toggle('active',active);
+    step.setAttribute('aria-selected',String(active));
+  });
+
+  dots.forEach(function(dot,i){
+    dot.classList.toggle('active',i===index);
+  });
+
+  if(scrollTab){
+    steps[index].scrollIntoView({
+      behavior:'smooth',
+      block:'nearest',
+      inline:'center'
+    });
+  }
+}
+
+/* Tab click -> matching card */
+steps.forEach(function(step,index){
+
+  step.addEventListener('click',function(){
+
+    cardList[index].scrollIntoView({
+      behavior:'smooth',
+      block:'nearest',
+      inline:'start'
+    });
+
+    setActive(index,true);
+  });
+
+});
+
+
+/* Card swipe -> matching tab and indicator */
+var timer;
+
+cards.addEventListener('scroll',function(){
+
+  clearTimeout(timer);
+
+  timer=setTimeout(function(){
+
+    var centre=cards.scrollLeft+(cards.clientWidth/2);
+    var closest=0;
+    var distance=Infinity;
+
+    cardList.forEach(function(card,index){
+
+      var cardCentre=card.offsetLeft+(card.offsetWidth/2);
+      var d=Math.abs(cardCentre-centre);
+
+      if(d<distance){
+        distance=d;
+        closest=index;
+      }
+    });
+
+    setActive(closest,true);
+
+  },80);
+
+},{passive:true});
+
+setActive(0,false);
+
+})();
 </script></body>
 </html>
 
