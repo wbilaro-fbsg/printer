@@ -5609,3 +5609,204 @@ $css=@'
     display:none!important;
   }
 }
+/* =========================================================
+   mobile-ux-v6
+   ========================================================= */
+@media(max-width:700px){
+
+/* ---------------------------------------------------------
+   1. MOBILE NAV: title + CTA + burger stay on one row
+   --------------------------------------------------------- */
+
+nav{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+
+nav b{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  margin-right:0!important;
+  white-space:nowrap!important;
+}
+
+nav .btn,
+nav>a.btn{
+  flex:0 0 auto!important;
+}
+
+.mobile-nav-toggle{
+  flex:0 0 42px!important;
+  width:42px!important;
+  height:42px!important;
+  margin:0!important;
+  order:99!important;
+}
+
+
+/* ---------------------------------------------------------
+   2. WHY UPGRADE: icon centered inside outline
+   --------------------------------------------------------- */
+
+#fit .upgrade-benefit-icon{
+  box-sizing:border-box!important;
+
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+
+  width:42px!important;
+  height:42px!important;
+
+  margin:0!important;
+  padding:0!important;
+
+  border:1px solid #01916D!important;
+  border-radius:9px!important;
+
+  background:transparent!important;
+  color:#01916D!important;
+
+  line-height:1!important;
+}
+
+#fit .upgrade-benefit-icon svg{
+  display:block!important;
+
+  width:22px!important;
+  height:22px!important;
+
+  margin:0!important;
+  padding:0!important;
+
+  position:static!important;
+  inset:auto!important;
+
+  transform:none!important;
+
+  stroke:currentColor!important;
+}
+
+/* Keep benefit content visually aligned to icon */
+#fit .upgrade-to{
+  align-items:start!important;
+}
+
+#fit .upgrade-to::before{
+  align-self:start!important;
+}
+
+#fit .upgrade-to>strong,
+#fit .upgrade-to>small{
+  text-align:left!important;
+}
+
+
+/* ---------------------------------------------------------
+   3. CONNECTED ECOSYSTEM:
+   clickable stages + horizontally swipeable rail
+   --------------------------------------------------------- */
+
+#ecosystem{
+  overflow:hidden!important;
+}
+
+#ecosystem .eco-flow-rail{
+  display:flex!important;
+
+  gap:8px!important;
+
+  width:calc(100% + 16px)!important;
+  margin:0 -16px 0 0!important;
+  padding:8px 34px 16px 0!important;
+
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+
+  scroll-snap-type:x mandatory!important;
+  scroll-padding-left:0!important;
+
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch!important;
+
+  overscroll-behavior-inline:contain!important;
+}
+
+#ecosystem .eco-flow-rail::-webkit-scrollbar{
+  display:none!important;
+}
+
+/* 3.6 stages visible so the next stage is intentionally peeking in */
+#ecosystem .eco-flow-step{
+  flex:0 0 calc((100vw - 64px) / 3.6)!important;
+  min-width:calc((100vw - 64px) / 3.6)!important;
+
+  padding:0 2px 11px!important;
+
+  scroll-snap-align:start!important;
+
+  cursor:pointer!important;
+}
+
+#ecosystem .eco-flow-node{
+  width:42px!important;
+  height:42px!important;
+
+  margin-inline:auto!important;
+}
+
+#ecosystem .eco-flow-step strong{
+  display:block!important;
+
+  width:100%!important;
+
+  font-size:11px!important;
+  line-height:1.15!important;
+
+  text-align:center!important;
+
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+}
+
+/* Restore live indicator because the rail now genuinely swipes */
+#ecosystem .eco-flow-dots{
+  display:flex!important;
+
+  justify-content:center!important;
+  align-items:center!important;
+
+  gap:7px!important;
+
+  width:100%!important;
+
+  margin:12px 0 2px!important;
+}
+
+/* Keep established page indicator language */
+#ecosystem .eco-flow-dots i{
+  width:7px!important;
+  height:7px!important;
+
+  border-radius:999px!important;
+
+  background:var(--line)!important;
+
+  transition:
+    width .2s ease,
+    background-color .2s ease!important;
+}
+
+#ecosystem .eco-flow-dots i.active{
+  width:19px!important;
+  background:#01916D!important;
+}
+
+/* Detail panel remains below the selectable/swipeable stages */
+#ecosystem .eco-flow-detail{
+  margin-top:10px!important;
+}
+
+}
