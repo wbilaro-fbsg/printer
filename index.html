@@ -2263,7 +2263,7 @@ html.pin-locked body{
 {"@context":"https://schema.org","@type":"Product","name":"Apeos C7072","brand":{"@type":"Brand","name":"FUJIFILM Business Innovation"},"description":"A new generation multifunction printer powered by Cloud and AI for connected document workflows.","category":"A3 colour multifunction printer"}
 </script>
 </head>
-<body><div id="preview-pin-gate" role="dialog" aria-modal="true" aria-labelledby="pin-title">
+<body><div id="preview-pin-gate" hidden role="dialog" aria-modal="true" aria-labelledby="pin-title">
   <form class="pin-panel" id="preview-pin-form">
     <div class="pin-brand">
       <img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation">
@@ -2799,7 +2799,7 @@ updateDots();
     return;
   }
 
-  document.documentElement.classList.add('pin-locked');
+  /* pin-flash-fix-v2 */document.documentElement.classList.add('pin-locked');gate.hidden=false;
 
   requestAnimationFrame(function(){
     input.focus();
