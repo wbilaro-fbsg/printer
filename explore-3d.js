@@ -73,7 +73,7 @@ var GLB64="Z2xURgIAAACEdUQASFAFAEpTT057ImFzc2V0Ijp7ImdlbmVyYXRvciI6ImdsVEYtVHJhb
 /* ---------- real printer model (GLB) ---------- */
 var IW=745,IH=750,P={},pickMeshes=[],mixer=null,ready=false,U={uT:{value:0},uAsm:{value:reduce?1:0},uFocus:{value:0},uM:{value:new V(0,0,99)}};
 var touchscreenTexture=null;
-function applyTouchscreenTexture(){if(!touchscreenTexture||!P.touch)return;P.touch.m.forEach(function(mesh){if(mesh.material.name==='mtl_UI.002'){mesh.material.map=touchscreenTexture;mesh.material.color.set(0xffffff);mesh.material.needsUpdate=true;}});}
+function applyTouchscreenTexture(){if(!touchscreenTexture||!P.touch)return;P.touch.m.forEach(function(mesh){if(mesh.material.name==='mtl_UI.002'){mesh.material.map=null;mesh.material.color.set(0x111111);mesh.material.emissive&&mesh.material.emissive.set(0x050505);mesh.material.needsUpdate=true;}});}
 var touchscreenPhoto=new Image();touchscreenPhoto.onload=function(){var screenCanvas=document.createElement('canvas');screenCanvas.width=808;screenCanvas.height=500;screenCanvas.getContext('2d').drawImage(touchscreenPhoto,208,120,405,250,0,0,808,500);touchscreenTexture=new THREE.CanvasTexture(screenCanvas);touchscreenTexture.flipY=false;touchscreenTexture.encoding=THREE.sRGBEncoding;touchscreenTexture.wrapS=THREE.ClampToEdgeWrapping;touchscreenTexture.wrapT=THREE.ClampToEdgeWrapping;touchscreenTexture.repeat.set(2.439,3.333);touchscreenTexture.offset.set(-.07317,-2.2667);applyTouchscreenTexture();};touchscreenPhoto.src='final-assets/01-Approved-Assets/images/C7072 4.jpg';
 function drawScreen(){}
 var PART={feeder:['DADF','DADF_stopper','IIT'],touch:['UI3'],out:['a_fin_1','a_fin_2','a_fin_3'],body:['cover','TM_Cover'],t1:['tray_1'],t2:['tray_2'],t34:['tray_3','tray_4'],side:['sidetray','sidetray_1','sidetray_2','sidetray_3'],msi:['msi','msi_stopper']},
@@ -170,7 +170,7 @@ if(mixer)mixer.update(0);
   var checkHotspots=now-hotspotCheckAt>80;if(checkHotspots)hotspotCheckAt=now;
   Object.keys(INFO).forEach(function(id){var i=INFO[id];hotspotPoint.copy(i.w);G.localToWorld(hotspotPoint);s.copy(hotspotPoint).project(C);
     i.el.style.transform='translate('+((s.x*.5+.5)*XW)+'px,'+((-s.y*.5+.5)*XH)+'px)';
-    var inView=s.x>=-1&&s.x<=1&&s.y>=-1&&s.y<=1&&s.z>=-1&&s.z<=1,visible=!focus&&inView&&ready&&!full;
+    var inView=s.x>=-1&&s.x<=1&&s.y>=-1&&s.y<=1&&s.z>=-1&&s.z<=1,frontFacing=(id!=='out'||Math.cos(G.rotation.y)>.65);visible=!focus&&inView&&ready&&!full&&frontFacing;
     if(checkHotspots&&visible){var distance=hotspotPoint.distanceTo(C.position);hotspotRayDirection.subVectors(hotspotPoint,C.position).normalize();hotspotRaycaster.set(C.position,hotspotRayDirection);hotspotRaycaster.far=Math.max(0,distance-.4);i.occluded=hotspotRaycaster.intersectObjects(pickMeshes,false).length>0;}
     i.el.classList.toggle('off',!visible||!!i.occluded);});
   R.render(S,C);if(needsFrame())scheduleFrame();}
