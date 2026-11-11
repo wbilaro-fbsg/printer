@@ -6192,3 +6192,11 @@ nav .nav-menu>a.btn{
 
 /* feature-panel-speed-fix-v1 */
 #features .feature-panel{animation:feature-panel-fast-in .25s cubic-bezier(.22,1,.36,1) both!important}@keyframes feature-panel-fast-in{0%{opacity:.35;transform:translateY(6px)}100%{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){#features .feature-panel{animation:none!important;opacity:1!important;transform:none!important}}
+
+/* mobile-brand-strip-center-v2 */
+@media(max-width:700px){.apeos-brand-strip .apeos-brand-strip-inner{width:100%!important;justify-content:center!important;align-items:center!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important}.apeos-brand-strip .apeos-brand-logo,.apeos-brand-strip .reili-brand-logo{margin-left:0!important;margin-right:0!important}}
+
+/* mobile-brand-strip-copy-center-v3 */
+@media(max-width:700px){.apeos-brand-strip{text-align:center!important}.apeos-brand-strip .apeos-brand-strip-copy,.apeos-brand-strip .brand-strip-copy,.apeos-brand-strip p{width:100%!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important}}
+
+/* mobile-brand-message-center-v4 */*n@media(max-width:700px){.apeos-br*nd-strip .apeos-brand-message{flex:0 0 100%!important;width:100%!important;margin-left:0!important;margin-right:0!important;padding-top:6px!important;text-align:center!important}.apeos-brand-strip .apeos-brand-message>*{text-align:center!important;margin-left:auto!important;margin-right:auto!important}}
