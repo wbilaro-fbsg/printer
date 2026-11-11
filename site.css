@@ -1948,7 +1948,7 @@ nav.h .nav-menu{
 }
 
 /* Number */
-#features .feature-tab span:first-child{
+#features .feature-tab>span:first-child{
   color:#01916D!important;
   font-size:13px!important;
   font-weight:700!important;
@@ -6162,3 +6162,6 @@ nav .nav-menu>a.btn{
 }
 
 }
+
+/* feature-tab-memory-anchor-typography-v1 */
+.feature-tab-label .memory-anchor,.feature-tab-label .memory-anchor-ui{font-family:inherit!important;font-size:inherit!important;font-weight:inherit!important;line-height:inherit!important;letter-spacing:inherit!important}.feature-tab-label .memory-anchor-ui{color:inherit}
