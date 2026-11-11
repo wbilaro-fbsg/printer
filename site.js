@@ -743,3 +743,6 @@ setActive(0,false);
 
 /* mobile-production-fixes-v1 */
 (function(){if(window.innerWidth>700)return;var nav=document.querySelector('nav');var navMenu=nav&&nav.querySelector('.nav-menu');var burger=nav&&nav.querySelector('.mobile-nav-toggle');var panel=nav&&nav.querySelector('.mobile-site-nav');if(!navMenu||!burger)return;if(burger.parentElement!==navMenu)navMenu.appendChild(burger);if(panel&&panel.parentElement!==navMenu)navMenu.appendChild(panel);})();
+
+/* mobile-hero-fallback-v2 */
+(function(){if(window.innerWidth>700||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var hero=document.querySelector('.hero2');if(!hero)return;var ticking=false;function update(){ticking=false;var y=Math.min(window.scrollY*.18,hero.offsetHeight*.11);hero.style.setProperty('--mobile-hero-parallax',y+'px');}window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});window.addEventListener('resize',update,{passive:true});update();})();

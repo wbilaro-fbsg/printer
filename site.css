@@ -6180,3 +6180,6 @@ nav .nav-menu>a.btn{
 
 /* mobile-production-fixes-v1 */
 @media(max-width:700px){.hero2{background-color:#333!important;background-image:url('final-assets/01-Approved-Assets/images/Kouka Launch Ad Update Singapore.jpg')!important;background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important}.hero2 .hero-video{background:transparent!important}nav .nav-menu{box-sizing:border-box!important;padding-left:16px!important;padding-right:16px!important}.mobile-nav-toggle{justify-self:end!important;margin:0!important}}
+
+/* mobile-hero-fallback-v2 */
+@media(max-width:700px){.hero2{background-color:#323638!important;background-image:url('final-assets/01-Approved-Assets/images/embedded/embedded-image-02.jpg')!important;background-size:auto 118%!important;background-position:center calc(50% + var(--mobile-hero-parallax,0px))!important;background-repeat:no-repeat!important}.hero2::before{background:linear-gradient(90deg,rgba(8,11,12,.82) 0%,rgba(8,11,12,.68) 48%,rgba(8,11,12,.38) 100%)!important}.hero2 h1{color:#fff!important;text-shadow:0 2px 16px rgba(0,0,0,.28)!important}.hero2 .ey{color:#CCE9E2!important}.hero2 .lead{color:rgba(255,255,255,.9)!important}}
