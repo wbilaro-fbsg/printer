@@ -73,8 +73,12 @@ var GLB64="Z2xURgIAAACEdUQASFAFAEpTT057ImFzc2V0Ijp7ImdlbmVyYXRvciI6ImdsVEYtVHJhb
 /* ---------- real printer model (GLB) ---------- */
 var IW=745,IH=750,P={},pickMeshes=[],mixer=null,ready=false,U={uT:{value:0},uAsm:{value:reduce?1:0},uFocus:{value:0},uM:{value:new V(0,0,99)}};
 var touchscreenTexture=null;
-function applyTouchscreenTexture(){if(!touchscreenTexture||!P.touch)return;P.touch.m.forEach(function(mesh){if(mesh.material.name==='mtl_UI.002'){mesh.material.map=null;mesh.material.color.set(0x111111);mesh.material.emissive&&mesh.material.emissive.set(0x050505);mesh.material.needsUpdate=true;}});}
-var touchscreenPhoto=new Image();touchscreenPhoto.onload=function(){var screenCanvas=document.createElement('canvas');screenCanvas.width=808;screenCanvas.height=500;screenCanvas.getContext('2d').drawImage(touchscreenPhoto,208,120,405,250,0,0,808,500);touchscreenTexture=new THREE.CanvasTexture(screenCanvas);touchscreenTexture.flipY=false;touchscreenTexture.encoding=THREE.sRGBEncoding;touchscreenTexture.wrapS=THREE.ClampToEdgeWrapping;touchscreenTexture.wrapT=THREE.ClampToEdgeWrapping;touchscreenTexture.repeat.set(2.439,3.333);touchscreenTexture.offset.set(-.07317,-2.2667);applyTouchscreenTexture();};touchscreenPhoto.src='final-assets/01-Approved-Assets/images/C7072 4.jpg';
+
+/*
+ * Use the original control-panel texture embedded in the GLB.
+ * Do not replace mtl_UI.002 with an external CanvasTexture.
+ */
+function applyTouchscreenTexture(){}
 function drawScreen(){}
 var PART={feeder:['DADF','DADF_stopper','IIT'],touch:['UI3'],out:['a_fin_1','a_fin_2','a_fin_3'],body:['cover','TM_Cover'],t1:['tray_1'],t2:['tray_2'],t34:['tray_3','tray_4'],side:['sidetray','sidetray_1','sidetray_2','sidetray_3'],msi:['msi','msi_stopper']},
 CLIPS={feeder:['DADF','DADF_stopper'],out:['a_fin_2','a_fin_3'],t1:['tray_1'],t2:['tray_2'],t34:['tray_3','tray_4'],side:['sidetray_1','sidetray_2','sidetray_3'],msi:['msi','msi_stopper']},
@@ -98,7 +102,7 @@ function setupPrinter(g){
   own.forEach(function(o){bx.expandByObject(o);});
   var sz=bx.getSize(new V()),sc=2.9/sz.y,ct=bx.getCenter(new V());
   root.scale.multiplyScalar(sc);root.position.set(-ct.x*sc,.02-bx.min.y*sc,-ct.z*sc);
-  G.add(root);G.position.set(0,0,0);G.rotation.set(0,0,0);
+  G.add(root);G.position.set(0,0,0);G.rotation.set(0,0,0);if(touchscreenTexture){applyTouchscreenTexture();}
   mixer=new THREE.AnimationMixer(root);
   Object.keys(CLIPS).forEach(function(id){if(!P[id])return;CLIPS[id].forEach(function(cn){
     var c=g.animations.filter(function(a){return a.name.split('|')[0]===cn;})[0];if(!c)return;
