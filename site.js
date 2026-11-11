@@ -746,3 +746,6 @@ setActive(0,false);
 
 /* mobile-hero-fallback-v2 */
 (function(){if(window.innerWidth>700||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var hero=document.querySelector('.hero2');if(!hero)return;var ticking=false;function update(){ticking=false;var y=Math.min(window.scrollY*.18,hero.offsetHeight*.11);hero.style.setProperty('--mobile-hero-parallax',y+'px');}window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});window.addEventListener('resize',update,{passive:true});update();})();
+
+/* mobile-hero-parallax-v3 */
+(function(){if(window.innerWidth>700||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var hero=document.querySelector('.hero2');if(!hero)return;var current=0,target=0,running=false;function frame(){current+=(target-current)*0.085;hero.style.setProperty('--mobile-hero-parallax',current.toFixed(2)+'px');if(Math.abs(target-current)>.1){requestAnimationFrame(frame)}else{current=target;hero.style.setProperty('--mobile-hero-parallax',current.toFixed(2)+'px');running=false}}function update(){target=Math.min(window.scrollY*.32,hero.offsetHeight*.20);if(!running){running=true;requestAnimationFrame(frame)}}window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update,{passive:true});update();})();
