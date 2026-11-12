@@ -793,3 +793,12 @@ setActive(0,false);
 
 /* hero-kinetic-mobile-loop-v10 */
 (function(){if(window.innerWidth>700||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var hero=document.querySelector('.hero-kinetic-v1');var canvas=hero&&hero.querySelector('.hero-kinetic-canvas');if(!hero||!canvas)return;var phase=0,running=true,start=performance.now();function loop(now){if(!running)return;phase=(now-start)/1000;var x=58+Math.sin(phase*.72)*18;var y=61+Math.sin(phase*.54+1.2)*15;canvas.style.setProperty('--mobile-flow-x',x+'%');canvas.style.setProperty('--mobile-flow-y',y+'%');canvas.style.filter='drop-shadow(0 0 '+(3+Math.sin(phase*.9)*1.5)+'px rgba(1,145,109,.14))';canvas.style.opacity=(.42+Math.sin(phase*.82)*.10).toFixed(3);requestAnimationFrame(loop);}var observer=new IntersectionObserver(function(entries){running=entries[0]&&entries[0].isIntersecting;if(running){start=performance.now()-phase*1000;requestAnimationFrame(loop);}},{threshold:.05});observer.observe(hero);requestAnimationFrame(loop);})();
+
+/* hero-origin-glow-border-v14 */
+(function(){if(window.innerWidth>700)return;var product=document.querySelector('.hero-redesign-v1 .hero-product');if(!product||product.querySelector('.hero-origin-glow-border'))return;var glow=document.createElement('span');glow.className='hero-origin-glow-border';glow.setAttribute('aria-hidden','true');product.insertBefore(glow,product.firstChild);})();
+
+/* hero-product-silhouette-pulse-v15 */
+(function(){if(window.innerWidth>700)return;var product=document.querySelector('.hero-redesign-v1 .hero-product');var image=product&&product.querySelector('img:not(.hero-product-silhouette-glow)');if(!product||!image||product.querySelector('.hero-product-silhouette-glow'))return;var glow=image.cloneNode(false);glow.className='hero-product-silhouette-glow';glow.alt='';glow.setAttribute('aria-hidden','true');product.insertBefore(glow,image);})();
+
+/* page-reload-top-v1 */
+(function(){if('scrollRestoration' in history){history.scrollRestoration='manual';}if(!location.hash){window.addEventListener('pageshow',function(e){if(e.persisted||performance.getEntriesByType('navigation')[0]?.type==='reload'){window.scrollTo(0,0);}});}})();
