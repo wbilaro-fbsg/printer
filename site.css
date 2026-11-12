@@ -6320,3 +6320,6 @@ nav .nav-menu>a.btn{
 
 /* hero-desktop-pulse-v20 */
 @media(min-width:701px){.hero-redesign-v1 .hero-product>img:not(.hero-product-silhouette-glow){--heroDesktopGlowBlur:3px;--heroDesktopGlowAlpha:.10;filter:drop-shadow(0 0 2px rgba(1,145,109,.34)) drop-shadow(0 0 var(--heroDesktopGlowBlur) rgba(1,145,109,var(--heroDesktopGlowAlpha)))!important;animation:heroDesktopPulseV20 4.8s ease-in-out infinite!important;will-change:filter}@property --heroDesktopGlowBlur{syntax:'<length>';inherits:false;initial-value:3px}@property --heroDesktopGlowAlpha{syntax:'<number>';inherits:false;initial-value:.10}@keyframes heroDesktopPulseV20{0%,100%{--heroDesktopGlowBlur:3px;--heroDesktopGlowAlpha:.10}50%{--heroDesktopGlowBlur:10px;--heroDesktopGlowAlpha:.44}}}@media(prefers-reduced-motion:reduce){.hero-redesign-v1 .hero-product>img:not(.hero-product-silhouette-glow){animation:none!important}}
+
+/* nav-surface-separation-v1 */
+nav{background:#F1F4F2!important;border-top:1px solid #EDF1EF!important;border-bottom:1px solid #D3DDD9!important;box-shadow:0 3px 10px rgba(16,40,32,.05)!important}nav.nav-hidden{box-shadow:none!important}body:not(.at-top) nav,body.is-scrolled nav{box-shadow:0 6px 20px rgba(16,40,32,.10)!important}@media(max-width:700px){nav{background:#F1F4F2!important;border-bottom-color:#D3DDD9!important;box-shadow:0 3px 10px rgba(16,40,32,.05)!important}}
