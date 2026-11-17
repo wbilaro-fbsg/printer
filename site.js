@@ -188,69 +188,6 @@ updateDots();
 })();
 
 /* =====================================================
-   7. c7072-pin-gate-v1
-   ===================================================== */
-(function(){
-
-  var KEY='c7072-preview-access-v1';
-  var PIN='122200';
-
-  var gate=document.getElementById('preview-pin-gate');
-  var form=document.getElementById('preview-pin-form');
-  var input=document.getElementById('preview-pin');
-  var error=document.getElementById('pin-error');
-
-  if(!gate||!form||!input)return;
-
-  function unlock(){
-    document.documentElement.classList.remove('pin-locked');
-    gate.hidden=true;
-
-    try{
-      sessionStorage.setItem(KEY,'1');
-    }catch(e){}
-
-    window.scrollTo(0,0);
-  }
-
-  var unlocked=false;
-
-  try{
-    unlocked=sessionStorage.getItem(KEY)==='1';
-  }catch(e){}
-
-  if(unlocked){
-    unlock();
-    return;
-  }
-
-  /* pin-flash-fix-v2 */document.documentElement.classList.add('pin-locked');gate.hidden=false;
-
-  requestAnimationFrame(function(){
-    input.focus();
-  });
-
-  input.addEventListener('input',function(){
-    input.value=input.value.replace(/\D/g,'').slice(0,6);
-    error.textContent='';
-  });
-
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-
-    if(input.value===PIN){
-      unlock();
-      return;
-    }
-
-    error.textContent='Incorrect PIN. Please try again.';
-    input.value='';
-    input.focus();
-  });
-
-})();
-
-/* =====================================================
    8. ecosystem-flow-v3
    ===================================================== */
 (function(){
@@ -804,3 +741,4 @@ setActive(0,false);
 (function(){if('scrollRestoration' in history){history.scrollRestoration='manual';}if(!location.hash){window.addEventListener('pageshow',function(e){if(e.persisted||performance.getEntriesByType('navigation')[0]?.type==='reload'){window.scrollTo(0,0);}});}})();
 
 /* usp-scroll-bend-production-v1 */(function(){var sec=document.getElementById("usp-bend-production");if(!sec)return;var view=sec.querySelector(".usp-bend-window"),track=sec.querySelector(".usp-bend-track"),originals=Array.from(track.children);if(window.matchMedia("(max-width:900px)").matches||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;originals.forEach(function(card){track.appendChild(card.cloneNode(true))});originals.slice().reverse().forEach(function(card){track.insertBefore(card.cloneNode(true),track.firstChild)});var cards=Array.from(track.children),count=originals.length,step=0,setWidth=0,pos=0,target=0,velocity=0,auto=true,drag=false,lastX=0,lastTime=performance.now();function measure(){var r=originals[0].getBoundingClientRect();step=r.width+20;setWidth=step*count;pos=setWidth;target=setWidth}function normalize(){if(pos<setWidth*.35){pos+=setWidth;target+=setWidth}else if(pos>setWidth*1.65){pos-=setWidth;target-=setWidth}}function frame(now){var dt=Math.min(.032,(now-lastTime)/1000);lastTime=now;if(auto)target+=65*dt;velocity+=(target-pos)*.085;pos+=velocity*.16;velocity*=.82;normalize();track.style.transform="translate3d("+-pos+"px,0,0)";var center=innerWidth/2;cards.forEach(function(card){var r=card.getBoundingClientRect();var d=(r.left+r.width/2-center)/(innerWidth*.52);var bend=Math.max(-1,Math.min(1,d));var y=Math.abs(bend)*38;var rot=bend*5;var scale=1-Math.abs(bend)*.055;card.style.transform="translate3d(0,"+y+"px,0) rotateZ("+rot+"deg) scale("+scale+")";card.style.opacity=Math.max(.28,1-Math.abs(bend)*.34)});requestAnimationFrame(frame)}view.addEventListener("pointerdown",function(e){auto=false;drag=true;lastX=e.clientX;e.preventDefault();document.body.style.userSelect="none";view.setPointerCapture(e.pointerId)});view.addEventListener("pointermove",function(e){if(!drag)return;var d=e.clientX-lastX;lastX=e.clientX;target-=d});view.addEventListener("pointerup",function(){drag=false;document.body.style.userSelect=""});view.addEventListener("pointercancel",function(){drag=false;document.body.style.userSelect=""});window.addEventListener("resize",measure,{passive:true});measure();requestAnimationFrame(frame)})();
+
