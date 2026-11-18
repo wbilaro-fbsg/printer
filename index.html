@@ -841,7 +841,58 @@ body.edge-over-explore #edge-menu-toggle{color:#fff!important}
   #edge-menu{top:66px!important;right:10px!important;width:min(280px,calc(100vw - 20px))!important}
   .edge-menu-brand img{width:96px!important}
 }
-</style></head>
+</style><style id="usp-mobile-authority">
+@media(max-width:900px){
+  #usp-bend-production .usp-bend-window{
+    display:block!important;
+    position:relative!important;
+    height:286px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    touch-action:pan-x!important;
+    scroll-snap-type:x mandatory!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none!important;
+  }
+  #usp-bend-production .usp-bend-window::-webkit-scrollbar{display:none!important}
+
+  #usp-bend-production .usp-bend-track{
+    position:relative!important;
+    inset:auto!important;
+    top:auto!important;
+    left:auto!important;
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    width:max-content!important;
+    min-width:max-content!important;
+    gap:14px!important;
+    padding:8px 20px 16px!important;
+    transform:none!important;
+  }
+
+  #usp-bend-production .usp-bend-card{
+    display:block!important;
+    flex:0 0 calc(100vw - 54px)!important;
+    width:calc(100vw - 54px)!important;
+    max-width:340px!important;
+    min-width:0!important;
+    height:252px!important;
+    min-height:252px!important;
+    max-height:252px!important;
+    margin:0!important;
+    opacity:1!important;
+    visibility:visible!important;
+    transform:none!important;
+    scroll-snap-align:center!important;
+  }
+
+  #usp-bend-production .usp-bend-card:nth-child(n){
+    display:block!important;
+  }
+}
+</style>
+</head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
 <nav id="site-nav">
   <div class="clean-nav-inner">
@@ -1222,6 +1273,7 @@ body.edge-over-explore #edge-menu-toggle{color:#fff!important}
 </script>
 </body>
 </html>
+
 
 
 
