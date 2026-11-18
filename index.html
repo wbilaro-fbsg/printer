@@ -892,6 +892,108 @@ body.edge-over-explore #edge-menu-toggle{color:#fff!important}
   }
 }
 </style>
+<style id="single-nav-hero-gap-fix">
+@media(min-width:901px){
+  .hero2{
+    margin-top:0!important;
+    padding-top:0!important;
+  }
+  .hero2 .wrap,
+  .hero-redesign-layout{
+    margin-top:0!important;
+    padding-top:0!important;
+    min-height:calc(100vh - 62px)!important;
+  }
+}
+</style>
+<style id="edge-pill-scroll-reveal-v1">
+
+/* Smooth sideways retreat */
+body.edge-mode.edge-pills-hidden .edge-nav-left{
+  transform:translateX(-108%)!important;
+  opacity:.16!important;
+  pointer-events:none!important;
+}
+
+body.edge-mode.edge-pills-hidden .edge-nav-right{
+  transform:translateX(108%)!important;
+  opacity:.16!important;
+  pointer-events:none!important;
+}
+
+/* Visible state */
+body.edge-mode:not(.edge-pills-hidden) .edge-nav-left,
+body.edge-mode:not(.edge-pills-hidden) .edge-nav-right{
+  transform:translateX(0)!important;
+  opacity:1!important;
+}
+
+/* Slightly slower than normal UI movement so it feels deliberate */
+.edge-nav-left,
+.edge-nav-right{
+  transition:
+    transform .38s cubic-bezier(.22,1,.36,1),
+    opacity .28s ease,
+    background .2s ease!important;
+}
+
+</style>
+<style id="edge-pill-no-shadow-v1">
+.edge-nav-left,
+.edge-nav-right,
+body.edge-over-explore .edge-nav-left,
+body.edge-over-explore .edge-nav-right{
+  box-shadow:none!important;
+}
+</style>
+<style id="edge-pill-curve-balance-v1">
+
+/* Right edge pill: balanced concentric curves */
+.edge-nav-right{
+  height:50px!important;
+  padding:6px 12px 6px 6px!important;
+  gap:10px!important;
+  border-radius:25px 0 0 25px!important;
+}
+
+.edge-nav-right .edge-nav-demo{
+  height:38px!important;
+  min-height:38px!important;
+  padding:0 17px!important;
+  border-radius:19px!important;
+  box-sizing:border-box!important;
+}
+
+/* Keep burger centred in the same 38px internal zone */
+.edge-nav-right #edge-menu-toggle{
+  width:38px!important;
+  height:38px!important;
+  flex:0 0 38px!important;
+}
+
+@media(max-width:900px){
+  .edge-nav-right{
+    height:46px!important;
+    padding:5px 9px 5px 5px!important;
+    border-radius:23px 0 0 23px!important;
+    gap:7px!important;
+  }
+
+  .edge-nav-right .edge-nav-demo{
+    height:36px!important;
+    min-height:36px!important;
+    border-radius:18px!important;
+    padding:0 13px!important;
+  }
+
+  .edge-nav-right #edge-menu-toggle{
+    width:36px!important;
+    height:36px!important;
+    flex-basis:36px!important;
+  }
+}
+
+</style>
 </head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
 <nav id="site-nav">
@@ -1271,8 +1373,90 @@ body.edge-over-explore #edge-menu-toggle{color:#fff!important}
   update();
 })();
 </script>
+<script>
+/* edge-pill-scroll-reveal-v1 */
+(function(){
+  var body=document.body;
+  var menu=document.getElementById("edge-menu");
+  var toggle=document.getElementById("edge-menu-toggle");
+
+  if(!body)return;
+
+  var lastY=window.scrollY||0;
+  var accumulated=0;
+  var direction=0;
+  var ticking=false;
+
+  function menuOpen(){
+    return menu && !menu.hidden;
+  }
+
+  function update(){
+    ticking=false;
+
+    var y=Math.max(0,window.scrollY||0);
+    var delta=y-lastY;
+    var nextDirection=delta>0?1:delta<0?-1:0;
+
+    if(nextDirection && nextDirection!==direction){
+      accumulated=0;
+      direction=nextDirection;
+    }
+
+    accumulated+=Math.abs(delta);
+
+    /* Full nav zone */
+    if(y<=110){
+      body.classList.remove("edge-pills-hidden");
+      accumulated=0;
+      lastY=y;
+      return;
+    }
+
+    /* Never hide while user is using burger menu */
+    if(menuOpen() || (toggle && toggle===document.activeElement)){
+      body.classList.remove("edge-pills-hidden");
+      accumulated=0;
+      lastY=y;
+      return;
+    }
+
+    /* Down: retreat after deliberate movement */
+    if(direction===1 && accumulated>=44){
+      body.classList.add("edge-pills-hidden");
+      accumulated=0;
+    }
+
+    /* Up: return sooner so navigation feels responsive */
+    if(direction===-1 && accumulated>=18){
+      body.classList.remove("edge-pills-hidden");
+      accumulated=0;
+    }
+
+    lastY=y;
+  }
+
+  addEventListener("scroll",function(){
+    if(!ticking){
+      ticking=true;
+      requestAnimationFrame(update);
+    }
+  },{passive:true});
+
+  if(toggle){
+    toggle.addEventListener("click",function(){
+      body.classList.remove("edge-pills-hidden");
+      accumulated=0;
+    });
+  }
+})();
+</script>
 </body>
 </html>
+
+
+
+
 
 
 
