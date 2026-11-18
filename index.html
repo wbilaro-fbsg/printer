@@ -687,9 +687,202 @@
   body.f #explore #explore-controls{
     bottom:36px!important;
   }
-}</style></head>
+}/* clean-edge-pill-nav-v1 */
+#site-nav{
+  position:fixed!important;
+  inset:0 0 auto 0!important;
+  height:62px!important;
+  z-index:1000!important;
+  display:flex!important;
+  align-items:center!important;
+  background:rgba(255,255,255,.96)!important;
+  border-bottom:1px solid rgba(23,33,30,.10)!important;
+  box-shadow:0 3px 16px rgba(0,0,0,.055)!important;
+  backdrop-filter:blur(14px)!important;
+  transform:none!important;
+}
+
+.clean-nav-inner{
+  width:min(1360px,calc(100% - 40px))!important;
+  height:100%!important;
+  margin:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:20px!important;
+}
+
+.clean-nav-logo{
+  display:flex!important;
+  align-items:center!important;
+  padding-right:20px!important;
+  border-right:1px solid rgba(23,33,30,.16)!important;
+}
+
+.clean-nav-logo img{width:108px!important;height:auto!important;display:block!important}
+.clean-nav-product{margin-right:auto!important;white-space:nowrap!important;font-size:15px!important;color:#17211e!important}
+.clean-nav-links{display:flex!important;align-items:center!important;gap:20px!important}
+.clean-nav-links a{color:#43504b!important;text-decoration:none!important;font-size:13px!important;font-weight:600!important;white-space:nowrap!important}
+.clean-nav-links a:hover{color:#01916D!important}
+
+.clean-nav-demo,.edge-nav-demo{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:38px!important;
+  padding:0 18px!important;
+  border-radius:999px!important;
+  background:#01916D!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  white-space:nowrap!important;
+}
+
+body{padding-top:62px!important}
+
+/* compact system */
+#edge-nav{position:fixed!important;inset:0!important;z-index:1100!important;pointer-events:none!important}
+.edge-nav-left,.edge-nav-right{
+  position:absolute!important;
+  top:14px!important;
+  height:50px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid rgba(23,33,30,.10)!important;
+  box-shadow:0 7px 24px rgba(0,0,0,.10)!important;
+  backdrop-filter:blur(14px)!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  transition:opacity .2s ease,transform .25s cubic-bezier(.22,1,.36,1),background .2s ease!important;
+}
+
+.edge-nav-left{
+  left:0!important;
+  width:164px!important;
+  padding:0 24px 0 18px!important;
+  border-left:0!important;
+  border-radius:0 26px 26px 0!important;
+  transform:translateX(-105%)!important;
+}
+.edge-nav-left img{width:105px!important;height:auto!important}
+
+.edge-nav-right{
+  right:0!important;
+  gap:12px!important;
+  padding:0 16px 0 22px!important;
+  border-right:0!important;
+  border-radius:26px 0 0 26px!important;
+  transform:translateX(105%)!important;
+}
+
+body.edge-mode #site-nav{display:none!important}
+body.edge-mode{padding-top:0!important}
+body.edge-mode .edge-nav-left,
+body.edge-mode .edge-nav-right{
+  opacity:1!important;
+  pointer-events:auto!important;
+  transform:none!important;
+}
+
+#edge-menu-toggle{
+  width:34px!important;height:34px!important;border:0!important;background:transparent!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  gap:4px!important;cursor:pointer!important;color:#17211e!important;
+}
+#edge-menu-toggle span{width:17px!important;height:2px!important;background:currentColor!important;border-radius:2px!important;transition:.2s!important}
+#edge-menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)!important}
+#edge-menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0!important}
+#edge-menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)!important}
+
+#edge-menu{
+  position:absolute!important;
+  top:72px!important;
+  right:16px!important;
+  width:270px!important;
+  padding:10px!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.97)!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.18)!important;
+  border:1px solid rgba(23,33,30,.10)!important;
+  backdrop-filter:blur(18px)!important;
+  pointer-events:auto!important;
+}
+#edge-menu[hidden]{display:none!important}
+.edge-menu-brand{display:flex!important;align-items:center!important;min-height:52px!important;padding:7px 12px 8px!important}
+.edge-menu-brand img{width:116px!important;max-height:40px!important;object-fit:contain!important;object-position:left center!important}
+#edge-menu>a{display:flex!important;align-items:center!important;min-height:42px!important;padding:0 12px!important;border-radius:10px!important;color:#34413c!important;font-size:14px!important;font-weight:600!important;text-decoration:none!important}
+#edge-menu>a:hover{background:rgba(1,145,109,.09)!important;color:#006f55!important}
+
+/* Explore = dark edge pills only */
+body.edge-over-explore .edge-nav-left,
+body.edge-over-explore .edge-nav-right{background:rgba(16,22,20,.88)!important;border-color:rgba(255,255,255,.12)!important}
+body.edge-over-explore .edge-nav-left img{filter:brightness(0) invert(1)!important}
+body.edge-over-explore #edge-menu-toggle{color:#fff!important}
+
+/* mobile */
+@media(max-width:900px){
+  #site-nav{height:52px!important}
+  body{padding-top:52px!important}
+  .clean-nav-inner{width:calc(100% - 24px)!important;gap:10px!important}
+  .clean-nav-logo{padding-right:10px!important}
+  .clean-nav-logo img{width:88px!important}
+  .clean-nav-product{font-size:13px!important}
+  .clean-nav-links{display:none!important}
+  .clean-nav-demo{height:34px!important;padding:0 12px!important;font-size:11px!important}
+
+  .edge-nav-left,.edge-nav-right{top:10px!important;height:46px!important}
+  .edge-nav-left{width:126px!important;padding-left:14px!important}
+  .edge-nav-left img{width:88px!important}
+  .edge-nav-right{gap:7px!important;padding:0 10px 0 15px!important}
+  .edge-nav-demo{height:32px!important;padding:0 12px!important;font-size:11px!important}
+  #edge-menu{top:66px!important;right:10px!important;width:min(280px,calc(100vw - 20px))!important}
+  .edge-menu-brand img{width:96px!important}
+}
+</style></head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
-<nav><div class="logo-bar"><a href="#top" aria-label="FUJIFILM Business Innovation"><img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a></div><div class="nav-menu"><b style="color:#17211e!important;opacity:1!important;visibility:visible!important"><i></i>Apeos C7072</b><a class="l" href="#explore">Explore Apeos</a><a class="l" href="#film">Cloud + AI</a><a class="l" href="#whats-new">What's New</a><a class="l" href="#fit">Why Upgrade</a><a class="l" href="#specs">Specifications</a><a class="btn p" href="#contact">Request a demo</a></div></nav>
+<nav id="site-nav">
+  <div class="clean-nav-inner">
+    <a class="clean-nav-logo" href="#top" aria-label="FUJIFILM Business Innovation">
+      <img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation">
+    </a>
+    <strong class="clean-nav-product">Apeos C7072</strong>
+    <div class="clean-nav-links">
+      <a href="#explore">Explore Apeos</a>
+      <a href="#film">Cloud + AI</a>
+      <a href="#whats-new">What's New</a>
+      <a href="#fit">Why Upgrade</a>
+      <a href="#specs">Specifications</a>
+    </div>
+    <a class="clean-nav-demo" href="#contact">Request a demo</a>
+  </div>
+</nav>
+
+<div id="edge-nav" aria-label="Compact navigation">
+  <a class="edge-nav-left" href="#top" aria-label="Back to top">
+    <img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation">
+  </a>
+
+  <div class="edge-nav-right">
+    <a class="edge-nav-demo" href="#contact">Request a demo</a>
+    <button id="edge-menu-toggle" type="button" aria-expanded="false" aria-controls="edge-menu" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div id="edge-menu" hidden>
+    <div class="edge-menu-brand">
+      <img src="final-assets/01-Approved-Assets/logos/apeos_logo_tm.png" alt="Apeos">
+    </div>
+    <a href="#explore">Explore Apeos</a>
+    <a href="#film">Cloud + AI</a>
+    <a href="#whats-new">What's New</a>
+    <a href="#fit">Why Upgrade</a>
+    <a href="#specs">Specifications</a>
+  </div>
+</div>
 <main id="main-content"><header class="hero2 hero-redesign-v1 hero-kinetic-v1" id="top"><canvas class="hero-kinetic-canvas" aria-hidden="true"></canvas><div class="wrap hero-redesign-layout"><div class="hc hero-redesign-copy"><p class="ey">APEOS C7072 · POWERED BY CLOUD + AI</p><h1><span class="hero-paper">Paper in.</span><span class="hero-action">Action out.</span></h1><p class="lead">Capture, organise and connect workplace information through Cloud + AI, turning everyday documents into information your business can use.</p><div class="cta"><a class="btn p" href="#contact" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:178px!important;height:50px!important;min-height:50px!important;padding:0 24px!important;border:1px solid #01916D!important;border-radius:999px!important;background:#01916D!important;color:#fff!important;font-size:15px!important;font-weight:700!important;line-height:1!important">Request a demo</a><a class="btn g hero-explore-cta" href="#explore" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:178px!important;height:50px!important;min-height:50px!important;padding:0 24px!important;border:1px solid #01916D!important;border-radius:999px!important;background:#fff!important;color:#014937!important;font-size:15px!important;font-weight:700!important;line-height:1!important;text-decoration:none!important;text-shadow:none!important;backdrop-filter:none!important">Explore Apeos</a></div></div><div class="hero-product"><img src="final-assets/01-Approved-Assets/images/hero-c7072-product.png" alt="FUJIFILM Apeos C7072 colour multifunction printer" width="1920" height="911" fetchpriority="high" decoding="async"></div></div></header>
 <div class="apeos-brand-strip" aria-label="Apeos and REiLI Business">
   <div class="apeos-brand-strip-inner">
@@ -954,8 +1147,82 @@
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal();});
 })();
 </script>
+<script>
+/* clean-edge-pill-nav-v1 */
+(function(){
+  var body=document.body;
+  var edge=document.getElementById("edge-nav");
+  var menu=document.getElementById("edge-menu");
+  var toggle=document.getElementById("edge-menu-toggle");
+  var explore=document.getElementById("explore");
+  if(!edge||!menu||!toggle)return;
+
+  function closeMenu(){
+    menu.hidden=true;
+    toggle.setAttribute("aria-expanded","false");
+    toggle.setAttribute("aria-label","Open navigation menu");
+  }
+
+  toggle.addEventListener("click",function(e){
+    e.stopPropagation();
+    if(menu.hidden){
+      menu.hidden=false;
+      toggle.setAttribute("aria-expanded","true");
+      toggle.setAttribute("aria-label","Close navigation menu");
+    }else closeMenu();
+  });
+
+  document.addEventListener("click",function(e){
+    if(!menu.hidden&&!edge.contains(e.target))closeMenu();
+  });
+
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape")closeMenu();
+  });
+
+  function exactAnchor(e){
+    var a=e.target.closest('#edge-menu a[href^="#"],#site-nav a[href^="#"],.edge-nav-left[href^="#"],.edge-nav-demo[href^="#"]');
+    if(!a)return;
+    var id=a.getAttribute("href");
+    var target=document.querySelector(id);
+    if(!target)return;
+    e.preventDefault();
+    closeMenu();
+    var top=target.getBoundingClientRect().top+window.scrollY;
+    window.scrollTo({top:Math.round(top),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+    history.replaceState(null,"",id);
+  }
+
+  document.addEventListener("click",exactAnchor);
+
+  function update(){
+    var y=window.scrollY||0;
+    var compact=y>110;
+    body.classList.toggle("edge-mode",compact);
+
+    var over=false;
+    if(compact&&explore){
+      var r=explore.getBoundingClientRect();
+      over=r.top<=40&&r.bottom>=40;
+    }
+    body.classList.toggle("edge-over-explore",over);
+
+    if(!compact)closeMenu();
+  }
+
+  var ticking=false;
+  addEventListener("scroll",function(){
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(function(){ticking=false;update();});
+  },{passive:true});
+  addEventListener("resize",update,{passive:true});
+  update();
+})();
+</script>
 </body>
 </html>
+
 
 
 

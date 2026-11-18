@@ -742,3 +742,106 @@ setActive(0,false);
 
 /* usp-scroll-bend-production-v1 */(function(){var sec=document.getElementById("usp-bend-production");if(!sec)return;var view=sec.querySelector(".usp-bend-window"),track=sec.querySelector(".usp-bend-track"),originals=Array.from(track.children);if(window.matchMedia("(max-width:900px)").matches||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;originals.forEach(function(card){track.appendChild(card.cloneNode(true))});originals.slice().reverse().forEach(function(card){track.insertBefore(card.cloneNode(true),track.firstChild)});var cards=Array.from(track.children),count=originals.length,step=0,setWidth=0,pos=0,target=0,velocity=0,auto=true,drag=false,lastX=0,lastTime=performance.now();function measure(){var r=originals[0].getBoundingClientRect();step=r.width+20;setWidth=step*count;pos=setWidth;target=setWidth}function normalize(){if(pos<setWidth*.35){pos+=setWidth;target+=setWidth}else if(pos>setWidth*1.65){pos-=setWidth;target-=setWidth}}function frame(now){var dt=Math.min(.032,(now-lastTime)/1000);lastTime=now;if(auto)target+=65*dt;velocity+=(target-pos)*.085;pos+=velocity*.16;velocity*=.82;normalize();track.style.transform="translate3d("+-pos+"px,0,0)";var center=innerWidth/2;cards.forEach(function(card){var r=card.getBoundingClientRect();var d=(r.left+r.width/2-center)/(innerWidth*.52);var bend=Math.max(-1,Math.min(1,d));var y=Math.abs(bend)*38;var rot=bend*5;var scale=1-Math.abs(bend)*.055;card.style.transform="translate3d(0,"+y+"px,0) rotateZ("+rot+"deg) scale("+scale+")";card.style.opacity=Math.max(.28,1-Math.abs(bend)*.34)});requestAnimationFrame(frame)}view.addEventListener("pointerdown",function(e){auto=false;drag=true;lastX=e.clientX;e.preventDefault();document.body.style.userSelect="none";view.setPointerCapture(e.pointerId)});view.addEventListener("pointermove",function(e){if(!drag)return;var d=e.clientX-lastX;lastX=e.clientX;target-=d});view.addEventListener("pointerup",function(){drag=false;document.body.style.userSelect=""});view.addEventListener("pointercancel",function(){drag=false;document.body.style.userSelect=""});window.addEventListener("resize",measure,{passive:true});measure();requestAnimationFrame(frame)})();
 
+
+/* usp-mobile-loop-fix-v1 */
+(function(){
+  if(window.innerWidth>900)return;
+
+  var sec=document.getElementById("usp-bend-production");
+  if(!sec)return;
+
+  var view=sec.querySelector(".usp-bend-window");
+  var track=sec.querySelector(".usp-bend-track");
+  if(!view||!track||view.dataset.mobileLoopV1)return;
+
+  view.dataset.mobileLoopV1="1";
+
+  var cards=Array.from(track.children);
+  if(cards.length<3)return;
+
+  /* Undo desktop/legacy positioning on mobile */
+  track.style.transform="none";
+  track.style.width="max-content";
+
+  view.style.overflowX="auto";
+  view.style.overflowY="hidden";
+  view.style.webkitOverflowScrolling="touch";
+  view.style.scrollSnapType="x mandatory";
+  view.style.scrollBehavior="smooth";
+
+  cards.forEach(function(card){
+    card.style.flex="0 0 min(82vw,340px)";
+    card.style.width="min(82vw,340px)";
+    card.style.maxWidth="340px";
+    card.style.opacity="1";
+    card.style.transform="none";
+    card.style.scrollSnapAlign="center";
+    card.style.visibility="visible";
+    card.hidden=false;
+  });
+
+  var index=0;
+  var timer=null;
+  var paused=false;
+
+  function go(next){
+    index=(next+cards.length)%cards.length;
+
+    var card=cards[index];
+    var left=card.offsetLeft-(view.clientWidth-card.offsetWidth)/2;
+
+    view.scrollTo({
+      left:Math.max(0,left),
+      behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"
+    });
+  }
+
+  function start(){
+    stop();
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+
+    timer=setInterval(function(){
+      if(!paused)go(index+1);
+    },3200);
+  }
+
+  function stop(){
+    if(timer){
+      clearInterval(timer);
+      timer=null;
+    }
+  }
+
+  view.addEventListener("pointerdown",function(){
+    paused=true;
+  },{passive:true});
+
+  view.addEventListener("pointerup",function(){
+    paused=false;
+    start();
+  },{passive:true});
+
+  view.addEventListener("touchstart",function(){
+    paused=true;
+  },{passive:true});
+
+  view.addEventListener("touchend",function(){
+    paused=false;
+    start();
+  },{passive:true});
+
+  document.addEventListener("visibilitychange",function(){
+    if(document.hidden)stop();
+    else start();
+  });
+
+  requestAnimationFrame(function(){
+    cards.forEach(function(card){
+      card.style.display="";
+      card.style.opacity="1";
+      card.style.visibility="visible";
+    });
+    go(0);
+    start();
+  });
+})();
