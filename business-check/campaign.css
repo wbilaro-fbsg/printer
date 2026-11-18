@@ -3054,3 +3054,22 @@ body,
   font-weight:400!important;
 }
 
+
+/* result-background-v27 */
+#screen-result{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(247,250,248,.86) 0%,
+      rgba(247,250,248,.80) 48%,
+      rgba(239,248,244,.72) 100%
+    ),
+    url("assets/10001.jpg") center/cover no-repeat!important;
+
+  width:auto!important;
+  max-width:none!important;
+  margin-left:calc(-1 * clamp(34px,5vw,78px))!important;
+  margin-right:calc(-1 * clamp(34px,5vw,78px))!important;
+  padding-left:clamp(34px,5vw,78px)!important;
+  padding-right:clamp(34px,5vw,78px)!important;
+}
