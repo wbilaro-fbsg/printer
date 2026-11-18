@@ -37,6 +37,558 @@
 .ar-qr{display:block!important;width:220px!important;height:220px!important;margin:0 auto 16px!important}
 .ar-modal-note{font-size:13px!important;margin:0!important}
 .ar-modal-note a{color:#01916D!important;font-weight:700!important}
+
+/* explore-showroom-v1 — staging only */
+#explore{
+  position:relative!important;
+  min-height:760px!important;
+  overflow:hidden!important;
+  background:#151a19!important;
+  isolation:isolate!important
+}
+#explore #bgi{
+  position:absolute!important;
+  inset:0!important;
+  opacity:.48!important;
+  filter:saturate(.72) brightness(.58) contrast(1.08)!important;
+  background-size:cover!important;
+  background-position:center!important;
+  transform:scale(1.035)!important
+}
+#explore:after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(90deg,rgba(8,13,12,.86) 0%,rgba(8,13,12,.46) 27%,rgba(8,13,12,.06) 54%,rgba(8,13,12,.28) 100%),
+    linear-gradient(0deg,rgba(8,13,12,.56) 0%,transparent 38%)!important
+}
+#explore .explore-showroom-copy{
+  position:absolute!important;
+  z-index:8!important;
+  left:max(30px,calc((100vw - 1280px)/2))!important;
+  top:70px!important;
+  width:310px!important;
+  color:#fff!important
+}
+#explore .explore-showroom-copy .ey{
+  color:#76d8bc!important;
+  letter-spacing:.22em!important;
+  font-size:11px!important;
+  margin-bottom:14px!important
+}
+#explore .explore-showroom-copy h2{
+  color:#fff!important;
+  font-size:42px!important;
+  line-height:1!important;
+  margin:0 0 22px!important
+}
+#explore .explore-showroom-tagline{
+  color:#fff!important;
+  font-size:23px!important;
+  line-height:1.28!important;
+  margin:0 0 18px!important
+}
+#explore .explore-showroom-copy .sub{
+  color:rgba(255,255,255,.68)!important;
+  max-width:280px!important;
+  font-size:13px!important;
+  line-height:1.55!important
+}
+#explore #stage{
+  position:relative!important;
+  z-index:5!important;
+  min-height:760px!important
+}
+#explore #c{
+  position:relative!important;
+  z-index:5!important
+}
+
+/* premium dock */
+#explore #hs{
+  display:flex!important;
+  align-items:center!important;
+  gap:14px!important;
+  position:absolute!important;
+  left:max(30px,calc((100vw - 1280px)/2))!important;
+  bottom:34px!important;
+  z-index:40!important;
+  pointer-events:none!important
+}
+#explore #hs .explore-dock-btn{
+  position:static!important;
+  display:grid!important;
+  grid-template-columns:38px auto 18px!important;
+  align-items:center!important;
+  column-gap:12px!important;
+  width:auto!important;
+  min-width:250px!important;
+  min-height:66px!important;
+  padding:10px 16px!important;
+  border-radius:18px!important;
+  text-decoration:none!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  transform:translateY(0)!important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease!important
+}
+#explore #hs .explore-dock-open{
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  background:rgba(25,31,30,.82)!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.2)!important;
+  backdrop-filter:blur(12px)!important
+}
+#explore #hs .explore-dock-ar{
+  color:#fff!important;
+  border:1px solid rgba(135,255,219,.5)!important;
+  background:#01916D!important;
+  box-shadow:0 14px 34px rgba(1,145,109,.3)!important
+}
+#explore #hs .explore-dock-btn:hover{
+  transform:translateY(-3px)!important
+}
+#explore #hs .explore-dock-open:hover{
+  border-color:rgba(255,255,255,.58)!important;
+  background:rgba(37,45,43,.94)!important;
+  box-shadow:0 16px 38px rgba(0,0,0,.32)!important
+}
+#explore #hs .explore-dock-ar:hover{
+  background:#00a47b!important;
+  box-shadow:0 18px 42px rgba(1,145,109,.42)!important
+}
+#explore .explore-dock-icon{
+  display:grid!important;
+  place-items:center!important;
+  width:38px!important;
+  height:38px!important;
+  border:1px solid currentColor!important;
+  border-radius:11px!important;
+  font-size:22px!important;
+  line-height:1!important
+}
+#explore .explore-dock-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  text-align:left!important;
+  line-height:1.15!important
+}
+#explore .explore-dock-copy strong{
+  font-size:15px!important;
+  font-weight:700!important
+}
+#explore .explore-dock-copy small{
+  margin-top:5px!important;
+  color:rgba(255,255,255,.66)!important;
+  font-size:11px!important;
+  font-weight:500!important
+}
+#explore .explore-dock-ar .explore-dock-copy small{
+  color:rgba(255,255,255,.80)!important
+}
+#explore .explore-dock-arrow{
+  font-size:26px!important;
+  font-weight:300!important
+}
+
+@media(max-width:900px){
+  #explore{min-height:720px!important}
+  #explore #stage{min-height:720px!important}
+  #explore .explore-showroom-copy{
+    left:22px!important;
+    top:34px!important;
+    width:260px!important
+  }
+  #explore .explore-showroom-copy h2{font-size:34px!important}
+  #explore .explore-showroom-tagline{font-size:19px!important}
+  #explore #hs{
+    left:18px!important;
+    right:18px!important;
+    bottom:18px!important;
+    flex-direction:column!important;
+    gap:9px!important
+  }
+  #explore #hs .explore-dock-btn{
+    width:100%!important;
+    min-width:0!important;
+    min-height:58px!important;
+    border-radius:15px!important
+  }
+}/* explore-premium-room-v2 */
+#explore #bgi{opacity:.16!important;filter:saturate(.55) brightness(.38)!important}
+#explore:after{background:linear-gradient(90deg,rgba(8,12,11,.88) 0%,rgba(8,12,11,.38) 25%,rgba(8,12,11,.03) 57%,rgba(8,12,11,.25) 100%),linear-gradient(0deg,rgba(7,10,9,.58) 0%,transparent 42%)!important}
+#explore .explore-showroom-copy{background:none!important;padding:0!important}
+#explore .explore-showroom-copy h2{color:#fff!important;text-shadow:0 2px 20px rgba(0,0,0,.28)!important}
+#explore .explore-showroom-tagline{color:rgba(255,255,255,.94)!important}
+#explore .explore-showroom-copy .sub{color:rgba(255,255,255,.7)!important}
+#explore #hs{bottom:78px!important}
+#explore #stage{padding-bottom:0!important}
+@media(max-width:900px){#explore #hs{bottom:58px!important}}/* explore-photo-office-v3 */
+#explore #bgi{
+  opacity:1!important;
+  filter:saturate(.76) brightness(.48) contrast(1.06)!important;
+  background-size:cover!important;
+  background-position:center!important
+}
+#explore:after{
+  background:
+    linear-gradient(90deg,rgba(8,12,11,.82) 0%,rgba(8,12,11,.38) 25%,rgba(8,12,11,.08) 52%,rgba(8,12,11,.30) 100%),
+    linear-gradient(0deg,rgba(8,12,11,.48) 0%,transparent 42%)!important
+}/* explore-final-office-backdrop-v4 */
+#explore #bgi{
+  background-image:url("final-assets/02-Staging-Only/explore-office-backdrop.png")!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  opacity:1!important;
+  filter:brightness(.72) saturate(.88) contrast(1.04)!important;
+}
+#explore:after{
+  background:
+    linear-gradient(90deg,rgba(9,13,12,.60) 0%,rgba(9,13,12,.22) 25%,rgba(9,13,12,.02) 53%,rgba(9,13,12,.08) 100%),
+    linear-gradient(0deg,rgba(7,10,9,.30) 0%,transparent 35%)!important;
+}/* FINAL OFFICE BACKDROP */
+#explore #bgi{
+  background-image:url("final-assets/02-Staging-Only/explore-office-backdrop.png")!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  opacity:1!important;
+  filter:brightness(.78) saturate(.9) contrast(1.03)!important;
+}
+#explore:after{
+  background:linear-gradient(90deg,rgba(8,12,11,.58) 0%,rgba(8,12,11,.20) 26%,rgba(8,12,11,0) 55%)!important;
+}/* BACKDROP LAYER FIX v5 */
+#explore{
+  background:#111 url("final-assets/02-Staging-Only/explore-office-backdrop.png") center center / cover no-repeat!important;
+}
+#explore #bgi{
+  display:none!important;
+}
+#explore #stage{
+  background:transparent!important;
+}
+#explore #c{
+  background:transparent!important;
+}
+#explore:after{
+  z-index:2!important;
+  pointer-events:none!important;
+  background:linear-gradient(90deg,rgba(9,13,12,.58) 0%,rgba(9,13,12,.18) 27%,rgba(9,13,12,0) 52%)!important;
+}
+#explore .xt{z-index:8!important}
+#explore #stage{z-index:5!important}/* DIRECT OFFICE BACKDROP IMAGE */
+#explore{position:relative!important;background:#111!important}
+#explore-office-bg{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  z-index:0!important;
+  opacity:1!important;
+  filter:brightness(.78) saturate(.92) contrast(1.04)!important;
+  pointer-events:none!important;
+}
+#explore #bgi{display:none!important}
+#explore:after{z-index:1!important}
+#explore .xt{z-index:8!important}
+#explore #stage{z-index:5!important;background:transparent!important}
+#explore #c{background:transparent!important}
+/* explore-controls-hotspots-halo-v6 */
+
+/* #hs belongs ONLY to the Three.js hotspot system */
+#explore #hs{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:20!important;
+  pointer-events:none!important;
+}
+#explore #hs button{
+  pointer-events:auto!important;
+}
+
+/* Dedicated dock */
+#explore #explore-controls{
+  display:flex!important;
+  align-items:center!important;
+  gap:14px!important;
+  position:absolute!important;
+  left:max(30px,calc((100vw - 1280px)/2))!important;
+  bottom:24px!important;
+  z-index:45!important;
+  pointer-events:none!important;
+}
+#explore #explore-controls .explore-dock-btn{
+  position:static!important;
+  display:grid!important;
+  grid-template-columns:38px auto 18px!important;
+  align-items:center!important;
+  column-gap:12px!important;
+  min-width:250px!important;
+  min-height:66px!important;
+  padding:10px 16px!important;
+  border-radius:18px!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  text-decoration:none!important;
+}
+#explore #explore-controls .explore-dock-open{
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  background:rgba(25,31,30,.88)!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.28)!important;
+  backdrop-filter:blur(12px)!important;
+}
+#explore #explore-controls .explore-dock-ar{
+  color:#fff!important;
+  border:1px solid rgba(135,255,219,.5)!important;
+  background:#01916D!important;
+  box-shadow:0 14px 34px rgba(1,145,109,.32)!important;
+}
+#explore #explore-controls .explore-dock-icon{
+  display:grid!important;
+  place-items:center!important;
+  width:38px!important;
+  height:38px!important;
+  border:1px solid currentColor!important;
+  border-radius:11px!important;
+}
+#explore #explore-controls .explore-dock-icon svg{
+  width:21px!important;
+  height:21px!important;
+  display:block!important;
+  fill:currentColor!important;
+}
+#explore #explore-controls .explore-dock-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  text-align:left!important;
+}
+#explore #explore-controls .explore-dock-copy strong{
+  font-size:15px!important;
+  line-height:1.1!important;
+}
+#explore #explore-controls .explore-dock-copy small{
+  margin-top:5px!important;
+  color:rgba(255,255,255,.7)!important;
+  font-size:11px!important;
+}
+
+/* Soft floor halo, behind WebGL printer but above office photograph */
+#explore .explore-product-halo{
+  position:absolute!important;
+  z-index:3!important;
+  left:50%!important;
+  bottom:4%!important;
+  width:min(650px,48vw)!important;
+  height:220px!important;
+  transform:translateX(-38%)!important;
+  border-radius:50%!important;
+  pointer-events:none!important;
+  background:radial-gradient(
+    ellipse at center,
+    rgba(235,255,248,.22) 0%,
+    rgba(167,225,207,.13) 28%,
+    rgba(77,163,137,.07) 48%,
+    rgba(0,0,0,0) 72%
+  )!important;
+  filter:blur(8px)!important;
+  mix-blend-mode:screen!important;
+}
+
+/* canvas stays above halo */
+#explore #c{
+  position:relative!important;
+  z-index:5!important;
+}
+
+/* Dock mobile layout */
+@media(max-width:900px){
+  #explore #explore-controls{
+    left:18px!important;
+    right:18px!important;
+    bottom:18px!important;
+    flex-direction:column!important;
+    gap:9px!important;
+  }
+  #explore #explore-controls .explore-dock-btn{
+    width:100%!important;
+    min-width:0!important;
+    min-height:58px!important;
+  }
+  #explore .explore-product-halo{
+    width:90vw!important;
+    height:170px!important;
+    transform:translateX(-50%)!important;
+  }
+}
+/* explore-label-dock-fix-v7 */
+
+/* Dock fully inside the Explore viewport */
+#explore #explore-controls{
+  bottom:58px!important;
+  z-index:50!important;
+}
+
+/* Hotspots above the model, but labels become compact callouts */
+#explore #hs{
+  z-index:30!important;
+}
+
+/* Keep the actual hotspot/callout UI readable without giant white pills */
+#explore #hs button{
+  max-width:190px!important;
+  min-height:34px!important;
+  padding:6px 10px!important;
+  font-size:12px!important;
+  line-height:1.15!important;
+  white-space:nowrap!important;
+  background:rgba(22,30,28,.88)!important;
+  color:#fff!important;
+  border:1px solid rgba(92,211,176,.55)!important;
+  box-shadow:0 7px 18px rgba(0,0,0,.22)!important;
+  backdrop-filter:blur(8px)!important;
+}
+
+/* Teal circular hotspot/icon remains visually distinct */
+#explore #hs button i,
+#explore #hs button span:first-child{
+  color:#78e0c1!important;
+}
+
+/* Prevent helper labels from becoming the visual hero */
+#explore #hs button:hover,
+#explore #hs button:focus-visible{
+  background:rgba(1,145,109,.94)!important;
+  border-color:#8ce6cc!important;
+  box-shadow:0 10px 24px rgba(0,0,0,.30)!important;
+}
+
+/* Ensure the bottom of the stage has room for the dock */
+#explore,
+#explore #stage{
+  min-height:820px!important;
+}
+
+/* Retain the halo, centred below the printer */
+#explore .explore-product-halo{
+  bottom:9%!important;
+  width:min(680px,50vw)!important;
+  height:240px!important;
+  opacity:.9!important;
+}
+
+@media(max-width:900px){
+  #explore,
+  #explore #stage{
+    min-height:760px!important;
+  }
+  #explore #explore-controls{
+    bottom:26px!important;
+  }
+  #explore #hs button{
+    max-width:155px!important;
+    font-size:11px!important;
+  }
+}
+/* FOCUS CARD + DOCK POSITION v8 */
+
+/* Selected-hotspot information card:
+   move to side and vertically centre */
+#explore #card{
+  position:absolute!important;
+  left:auto!important;
+  right:28px!important;
+  top:50%!important;
+  bottom:auto!important;
+  width:min(340px,calc(100vw - 56px))!important;
+  max-height:70%!important;
+  transform:translateY(-50%)!important;
+  z-index:60!important;
+  overflow:auto!important;
+}
+
+/* Keep card comfortably away from right edge */
+#explore #card.show{
+  transform:translateY(-50%)!important;
+}
+
+/* Dock belongs inside the viewport */
+#explore #explore-controls{
+  left:max(30px,calc((100vw - 1280px)/2))!important;
+  bottom:88px!important;
+  z-index:70!important;
+}
+
+/* Give the Explore composition enough vertical room */
+#explore,
+#explore #stage{
+  min-height:860px!important;
+}
+
+/* Slightly raise halo with printer composition */
+#explore .explore-product-halo{
+  bottom:12%!important;
+}
+
+/* Mobile: information becomes bottom sheet style */
+@media(max-width:900px){
+  #explore,
+  #explore #stage{
+    min-height:800px!important;
+  }
+
+  #explore #card{
+    left:16px!important;
+    right:16px!important;
+    top:auto!important;
+    bottom:105px!important;
+    width:auto!important;
+    max-height:46%!important;
+    transform:none!important;
+  }
+
+  #explore #card.show{
+    transform:none!important;
+  }
+
+  #explore #explore-controls{
+    left:16px!important;
+    right:16px!important;
+    bottom:20px!important;
+  }
+}
+/* hotspot-long-label-fix-v9 */
+#explore #hs button{
+  max-width:none!important;
+  width:max-content!important;
+  overflow:visible!important;
+  white-space:nowrap!important;
+}
+
+#explore #hs button span{
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:nowrap!important;
+}
+
+/* sensible ceiling for unusually long future labels */
+#explore #hs button{
+  max-width:min(280px,30vw)!important;
+}
+
+@media(max-width:900px){
+  #explore #hs button{
+    max-width:220px!important;
+  }
+}
 </style></head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
 <nav><div class="logo-bar"><a href="#top" aria-label="FUJIFILM Business Innovation"><img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a></div><div class="nav-menu"><b style="color:#17211e!important;opacity:1!important;visibility:visible!important"><i></i>Apeos C7072</b><a class="l" href="#explore">Explore Apeos</a><a class="l" href="#film">Cloud + AI</a><a class="l" href="#whats-new">What's New</a><a class="l" href="#fit">Why Upgrade</a><a class="l" href="#specs">Specifications</a><a class="btn p" href="#contact">Request a demo</a></div></nav>
@@ -63,9 +615,9 @@
 <article class="feature-panel" id="feature-panel-paper" role="tabpanel" aria-labelledby="feature-tab-paper" tabindex="0" hidden><div class="feature-image crop" role="img" aria-label="Apeos C7072 multifunction printer" data-c="182,478,553,715" data-img="final-assets/01-Approved-Assets/images/C7072 6-web.jpg"></div><div class="feature-copy"><p class="feature-kicker">Intelligent capture</p><h3>Built to digitise work at speed</h3><p>High-speed two-sided scanning, multi-feed detection and intelligent document handling help teams capture large volumes accurately and with fewer interruptions.</p></div></article>
 <article class="feature-panel" id="feature-panel-scan" role="tabpanel" aria-labelledby="feature-tab-scan" tabindex="0" hidden><div class="feature-image crop" role="img" aria-label="Security lock visual representing protected connected workflows" data-c="163,38,553,330" data-img="final-assets/01-Approved-Assets/images/Lock V2.png"></div><div class="feature-copy"><p class="feature-kicker">Connected with control</p><h3><span class="memory-anchor memory-anchor-ui">Security</span> for connected workflows</h3><p>Security controls support accountable access and help organisations protect critical information as documents move between the device, teams and cloud services.</p></div></article></div></section>
 <section class="sec alt campaign-usecases use-cases-outcome-layout use-cases-production-v1" id="use-cases"><div class="wrap"><p class="ey">Designed around real work</p><h2 class="rv">Three workplace problems. One smarter way forward.</h2><p class="sub rv">Start with the problem, then see how Apeos can improve the flow of information through your workplace.</p><div class="use-case-head rv" aria-hidden="true"><span>WORKPLACE CHALLENGE</span><span>WITH APEOS</span></div><div class="use-case-list rv"><article class="use-case-row"><div class="use-case-number">01</div><div class="use-case-problem"><h3>Documents are difficult to find</h3></div><div class="use-case-outcome"><p>Standardise capture, naming and organisation so information is easier to retrieve and reuse.</p></div></article><article class="use-case-row"><div class="use-case-number">02</div><div class="use-case-problem"><h3>Confidential printing creates friction</h3></div><div class="use-case-outcome"><p>Support authenticated print release and more controlled handling across shared workplace devices.</p></div></article><article class="use-case-row"><div class="use-case-number">03</div><div class="use-case-problem"><h3>Teams need information across locations</h3></div><div class="use-case-outcome"><p>Connect document capture with cloud workflows so information can move more easily between teams and locations.</p></div></article></div><div class="use-case-shared-cta rv"><a href="#contact">See these in your demo <span aria-hidden="true">→</span></a></div></div></section>
-<section id="explore" aria-label="Explore the Apeos C7072 in 3D"><div id="bgi" data-p=".08" style="background-image:url(final-assets/01-Approved-Assets/images/embedded/embedded-image-01.jpg)"></div>
-<div class="xt"><p class="ey">Explore the printer</p><h2 class="rv">Apeos C7072</h2><p class="sub">Drag to rotate. Select a glowing hotspot to see key features.</p></div>
-<div id="stage"><canvas id="c" role="img" aria-label="Interactive 3D model of the Apeos C7072. Use the part buttons to explore it."></canvas><div id="hs"></div><div id="explore-controls"><button id="fo" class="btn g explore-open-control-v5 explore-open-control-v6" type="button">Fully open</button><a id="ar" class="btn g explore-open-control-v5 explore-open-control-v6" href="final-assets/02-Staging-Only/models/apeos-c7072-ar-textured.usdz" rel="ar">View in AR</a></div></div>
+<section id="explore" aria-label="Explore the Apeos C7072 in 3D"><img id="explore-office-bg" src="final-assets/02-Staging-Only/explore-office-backdrop.png" alt="" aria-hidden="true"><div id="bgi" data-p=".08" style="background-image:url(final-assets/02-Staging-Only/explore-office-backdrop.png)"></div>
+<div class="xt explore-showroom-copy"><p class="ey">EXPLORE IN 3D</p><h2 class="rv">Apeos C7072</h2><p class="explore-showroom-tagline">Bigger possibilities<br>for a smarter workplace.</p><p class="sub">Drag to rotate. Select a hotspot to explore key features.</p></div>
+<div id="stage"><div class="explore-product-halo" aria-hidden="true"></div><canvas id="c" role="img" aria-label="Interactive 3D model of the Apeos C7072. Use the part buttons to explore it."></canvas><div id="hs"></div><div id="explore-controls"><button id="fo" class="btn g explore-open-control-v5 explore-open-control-v6 explore-dock-btn explore-dock-open" type="button"><span class="explore-dock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8.5 3H3v5.5h2V6.4l4.1 4.1 1.4-1.4L6.4 5H8.5V3Zm7 0v2h2.1l-4.1 4.1 1.4 1.4L19 6.4v2.1h2V3h-5.5ZM9.1 13.5 5 17.6v-2.1H3V21h5.5v-2H6.4l4.1-4.1-1.4-1.4Zm5.8 0-1.4 1.4 4.1 4.1h-2.1v2H21v-5.5h-2v2.1l-4.1-4.1Z"/></svg></span><span class="explore-dock-copy"><strong>Explore fully open</strong><small>See every detail</small></span><span class="explore-dock-arrow" aria-hidden="true">›</span></button><a id="ar" class="btn g explore-open-control-v5 explore-open-control-v6 explore-dock-btn explore-dock-ar" href="final-assets/02-Staging-Only/models/apeos-c7072-ar-textured.usdz" rel="ar"><span class="explore-dock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3 4.5 7.2v9.6L12 21l7.5-4.2V7.2L12 3Zm0 2.2 5.2 2.9-5.2 3-5.2-3L12 5.2Zm-5.5 4.6 4.5 2.5v5.9l-4.5-2.5V9.8Zm6.5 8.4v-5.9l4.5-2.5v5.9L13 18.2Z"/></svg></span><span class="explore-dock-copy"><strong>View in AR</strong><small>See it in your space</small></span><span class="explore-dock-arrow" aria-hidden="true">›</span></a></div></div>
 <div class="hint" id="hint">Loading the 3D model…</div>
 <aside id="card" role="dialog" aria-modal="false" aria-labelledby="ch" aria-describedby="cp"><button id="x" aria-label="Close">×</button><small id="ct"></small><h2 id="ch"></h2><p id="cp"></p><ul id="cl"></ul></aside>
 </section>
@@ -306,6 +858,7 @@
 </script>
 </body>
 </html>
+
 
 
 
