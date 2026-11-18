@@ -589,7 +589,105 @@
     max-width:220px!important;
   }
 }
-</style></head>
+
+/* mobile-helper-fit-v11 */
+@media(max-width:900px){
+
+  /* Give focused content enough real vertical space */
+  body.f #explore{
+    min-height:1120px!important;
+    padding-bottom:170px!important;
+  }
+
+  body.f #explore #stage{
+    min-height:970px!important;
+  }
+
+  /* Full helper card: no internal scrollbar */
+  #explore #card{
+    left:16px!important;
+    right:16px!important;
+    top:72px!important;
+    bottom:auto!important;
+    width:auto!important;
+    max-height:none!important;
+    height:auto!important;
+    overflow:visible!important;
+    transform:none!important;
+    box-sizing:border-box!important;
+  }
+
+  #explore #card.show{
+    transform:none!important;
+  }
+
+  /* Keep readable density without crushing the copy */
+  #explore #card h2{
+    font-size:25px!important;
+    line-height:1.08!important;
+  }
+
+  #explore #card p,
+  #explore #card li{
+    font-size:14px!important;
+    line-height:1.42!important;
+  }
+
+  /* Dock stays below the full helper content */
+  body.f #explore #explore-controls{
+    bottom:24px!important;
+  }
+}
+/* mobile-dock-final-v13 */
+@media(max-width:900px){
+
+  /* Do NOT force stage height: it changes the Three.js aspect ratio */
+  #explore{
+    min-height:940px!important;
+    padding-bottom:0!important;
+    overflow:hidden!important;
+  }
+
+  #explore #stage{
+    min-height:940px!important;
+    height:auto!important;
+  }
+
+  /* Keep dock positioned over the carpet, safely above section boundary */
+  #explore #explore-controls{
+    position:absolute!important;
+    left:16px!important;
+    right:16px!important;
+    bottom:36px!important;
+    width:auto!important;
+    margin:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:10px!important;
+    z-index:80!important;
+  }
+
+  #explore #explore-controls .explore-dock-btn{
+    width:100%!important;
+    min-width:0!important;
+    min-height:58px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Focus mode needs extra room for longest helper card */
+  body.f #explore{
+    min-height:1160px!important;
+  }
+
+  body.f #explore #stage{
+    min-height:1160px!important;
+    height:auto!important;
+  }
+
+  body.f #explore #explore-controls{
+    bottom:36px!important;
+  }
+}</style></head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
 <nav><div class="logo-bar"><a href="#top" aria-label="FUJIFILM Business Innovation"><img src="final-assets/01-Approved-Assets/images/fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a></div><div class="nav-menu"><b style="color:#17211e!important;opacity:1!important;visibility:visible!important"><i></i>Apeos C7072</b><a class="l" href="#explore">Explore Apeos</a><a class="l" href="#film">Cloud + AI</a><a class="l" href="#whats-new">What's New</a><a class="l" href="#fit">Why Upgrade</a><a class="l" href="#specs">Specifications</a><a class="btn p" href="#contact">Request a demo</a></div></nav>
 <main id="main-content"><header class="hero2 hero-redesign-v1 hero-kinetic-v1" id="top"><canvas class="hero-kinetic-canvas" aria-hidden="true"></canvas><div class="wrap hero-redesign-layout"><div class="hc hero-redesign-copy"><p class="ey">APEOS C7072 · POWERED BY CLOUD + AI</p><h1><span class="hero-paper">Paper in.</span><span class="hero-action">Action out.</span></h1><p class="lead">Capture, organise and connect workplace information through Cloud + AI, turning everyday documents into information your business can use.</p><div class="cta"><a class="btn p" href="#contact" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:178px!important;height:50px!important;min-height:50px!important;padding:0 24px!important;border:1px solid #01916D!important;border-radius:999px!important;background:#01916D!important;color:#fff!important;font-size:15px!important;font-weight:700!important;line-height:1!important">Request a demo</a><a class="btn g hero-explore-cta" href="#explore" style="display:inline-flex!important;align-items:center!important;justify-content:center!important;width:178px!important;height:50px!important;min-height:50px!important;padding:0 24px!important;border:1px solid #01916D!important;border-radius:999px!important;background:#fff!important;color:#014937!important;font-size:15px!important;font-weight:700!important;line-height:1!important;text-decoration:none!important;text-shadow:none!important;backdrop-filter:none!important">Explore Apeos</a></div></div><div class="hero-product"><img src="final-assets/01-Approved-Assets/images/hero-c7072-product.png" alt="FUJIFILM Apeos C7072 colour multifunction printer" width="1920" height="911" fetchpriority="high" decoding="async"></div></div></header>
@@ -858,6 +956,9 @@
 </script>
 </body>
 </html>
+
+
+
 
 
 
