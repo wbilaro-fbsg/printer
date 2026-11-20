@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Take a quick business operations assessment and identify where flexibility, costs, administration and support could improve.">
+<title>What Should Your Business Fix Before It Costs More? | FUJIFILM Business Innovation Singapore</title>
+<link rel="stylesheet" href="campaign.css">
+</head>
+<body>
+
+<main id="app" class="app-shell">
+
+  <header class="brandbar">
+    <div class="brand-fujifilm"><a href="https://www.fujifilm.com/fbsg/en" target="_blank" rel="noopener noreferrer" aria-label="Visit FUJIFILM Business Innovation Singapore"><img src="assets/fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a></div>
+    <div class="brand-flexone"><a href="https://campaign-fbsg.fujifilm.com/flexone/home" target="_blank" rel="noopener noreferrer" aria-label="Visit FUJIFILM FleXOne"><img src="assets/flexone_logo.png" alt="FleXOne"></a></div>
+  </header>
+
+  <section id="screen-intro" class="screen intro-screen active" aria-labelledby="intro-title">
+    <div class="intro-copy">
+      <p class="eyebrow">A 2-minute checklist for SMEs</p>
+
+      <h1 id="intro-title">What Should Your Business Fix <span>Before It Costs More?</span></h1>
+
+      <p class="intro-lead">Running a business means making a hundred decisions a day. Small inefficiencies in print, supplies and IT can quietly add cost, especially for lean teams.</p>
+
+      <p class="intro-followup">Tick everything that sounds familiar, then see where your business could be losing time and money.</p>
+
+      <div class="reassurance" aria-label="Assessment details">
+        <div class="usp-item"><span class="usp-icon" aria-hidden="true">✓</span><span><b>7 areas</b><small>Focused on what matters</small></span></div>
+        <div class="usp-item"><span class="usp-icon" aria-hidden="true">↗</span><span><b>Instant recommendation</b><small>Get your result right away</small></span></div>
+        <div class="usp-item"><span class="usp-icon" aria-hidden="true">◷</span><span><b>No sign-up required</b><small>Start and finish in 2 minutes</small></span></div>
+      </div>
+    </div>
+    <div class="intro-visual assessment-preview" aria-hidden="true">
+  <div class="preview-top">
+    <span>01 / 07</span>
+    <small>BUSINESS OPERATIONS CHECK</small>
+  </div>
+  <div class="preview-progress"><b></b><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="preview-kicker">CONTRACT FLEXIBILITY</p>
+  <h2>Which of these sounds familiar?</h2>
+  <label class="preview-option"><input type="checkbox" data-preview-option="0"><i aria-hidden="true"></i><span>Our long-term contract no longer fits our business needs</span></label>
+  <label class="preview-option"><input type="checkbox" data-preview-option="1"><i aria-hidden="true"></i><span>Changing the number of devices means renegotiating or waiting</span></label>
+  <label class="preview-option preview-option-none">
+  <input type="checkbox" data-preview-none="true">
+  <i aria-hidden="true"></i>
+  <span>None of these apply</span>
+</label><button id="start-btn" class="primary-btn preview-start" type="button" data-track="assessment-start">Start the assessment <span aria-hidden="true">→</span></button>
+</div>
+  </section>
+
+  <section id="screen-assessment" class="screen assessment-screen" hidden aria-live="polite">
+    <div id="progress" class="progress" aria-label="Assessment progress"></div>
+
+    <div class="assessment-head">
+      <div>
+        <span id="step-count">01 / 07</span>
+        
+      </div>
+      <div id="assessment-gauge"
+     class="assessment-gauge gauge-good"
+     role="img"
+     aria-live="polite"
+     aria-label="Current assessment trend: Low">
+  <div class="gauge-segments" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="gauge-readout">
+    <strong id="gauge-label">LOW</strong>
+    <span>current grade</span>
+  </div>
+</div>
+    </div>
+
+
+
+    <div class="question-stage">
+      <div id="question-content"></div>
+    </div>
+
+    <div class="assessment-actions">
+      <button id="back-btn" class="text-btn" type="button" data-track="assessment-back">← Back</button>
+      <button id="next-btn" class="primary-btn compact" type="button" data-track="assessment-next">Next →</button>
+    </div>
+  </section>
+
+  <section id="screen-result" class="screen result-screen" hidden aria-live="polite">
+    <div id="result-content"></div>
+  </section>
+
+</main>
+
+<script src="campaign.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

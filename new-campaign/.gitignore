@@ -1,0 +1,10 @@
+
+# Local approved/reference assets
+approved-assets/
+references/
+source-assets/
+
+# Local working backups
+*.bak
+*.backup
+*.before-*
