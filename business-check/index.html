@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Take a quick business operations assessment and identify where flexibility, costs, administration and support could improve.">
-<title>What Should Your Operations Improve Next? | FUJIFILM Business Innovation Singapore</title>
+<title>What Should Your Business Fix Before It Costs More? | FUJIFILM Business Innovation Singapore</title>
 <link rel="stylesheet" href="campaign.css">
 </head>
 <body>
@@ -12,38 +12,37 @@
 <main id="app" class="app-shell">
 
   <header class="brandbar">
-    <div class="brand-fujifilm"><img src="assets/fujifilm_logo.png" alt="FUJIFILM Business Innovation"></div>
-    <div class="brand-flexone"><img src="assets/flexone_logo.png" alt="FleXOne"></div>
+    <div class="brand-fujifilm"><a href="https://www.fujifilm.com/fbsg/en" target="_blank" rel="noopener noreferrer" aria-label="Visit FUJIFILM Business Innovation Singapore"><img src="assets/fujifilm_logo.png" alt="FUJIFILM Business Innovation"></a></div>
+    <div class="brand-flexone"><a href="https://campaign-fbsg.fujifilm.com/flexone/home" target="_blank" rel="noopener noreferrer" aria-label="Visit FUJIFILM FleXOne"><img src="assets/flexone_logo.png" alt="FleXOne"></a></div>
   </header>
 
   <section id="screen-intro" class="screen intro-screen active" aria-labelledby="intro-title">
     <div class="intro-copy">
-      <p class="eyebrow">2-MINUTE BUSINESS CHECK</p>
-      <h1 id="intro-title">What should your<br>operations <span>improve next?</span></h1>
+      <p class="eyebrow">A 2-minute checklist for SMEs</p>
 
-      <p class="intro-lead">
-        Identify hidden friction across cost, flexibility, IT support and everyday administration.
-      </p>
+      <h1 id="intro-title">What Should Your Business Fix <span>Before It Costs More?</span></h1>
+
+      <p class="intro-lead">Running a business means making a hundred decisions a day. Small inefficiencies in print, supplies and IT can quietly add cost, especially for lean teams.</p>
+
+      <p class="intro-followup">Tick everything that sounds familiar, then see where your business could be losing time and money.</p>
 
       <div class="reassurance" aria-label="Assessment details">
         <div class="usp-item"><span class="usp-icon" aria-hidden="true">✓</span><span><b>7 areas</b><small>Focused on what matters</small></span></div>
         <div class="usp-item"><span class="usp-icon" aria-hidden="true">↗</span><span><b>Instant recommendation</b><small>Get your result right away</small></span></div>
         <div class="usp-item"><span class="usp-icon" aria-hidden="true">◷</span><span><b>No sign-up required</b><small>Start and finish in 2 minutes</small></span></div>
       </div>
-
-      
     </div>
-
     <div class="intro-visual assessment-preview" aria-hidden="true">
   <div class="preview-top">
     <span>01 / 07</span>
     <small>BUSINESS OPERATIONS CHECK</small>
   </div>
+  <div class="preview-progress"><b></b><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <p class="preview-kicker">CONTRACT FLEXIBILITY</p>
   <h2>Which of these sounds familiar?</h2>
-  <label class="preview-option"><input type="checkbox" data-preview-option="0"><i aria-hidden="true"></i><span>Our current contract no longer suits how we work.</span></label>
-  <label class="preview-option"><input type="checkbox" data-preview-option="1"><i aria-hidden="true"></i><span>Changing the number of devices isn't straightforward.</span></label>
-  <div class="preview-progress"><b></b><i></i><i></i><i></i><i></i><i></i><i></i></div><label class="preview-option preview-option-none">
+  <label class="preview-option"><input type="checkbox" data-preview-option="0"><i aria-hidden="true"></i><span>Our long-term contract no longer fits our business needs</span></label>
+  <label class="preview-option"><input type="checkbox" data-preview-option="1"><i aria-hidden="true"></i><span>Changing the number of devices means renegotiating or waiting</span></label>
+  <label class="preview-option preview-option-none">
   <input type="checkbox" data-preview-none="true">
   <i aria-hidden="true"></i>
   <span>None of these apply</span>
@@ -52,15 +51,30 @@
   </section>
 
   <section id="screen-assessment" class="screen assessment-screen" hidden aria-live="polite">
+    <div id="progress" class="progress" aria-label="Assessment progress"></div>
+
     <div class="assessment-head">
       <div>
         <span id="step-count">01 / 07</span>
         
       </div>
-      <strong id="issue-count" aria-live="polite">0 issues identified</strong>
+      <div id="assessment-gauge"
+     class="assessment-gauge gauge-good"
+     role="img"
+     aria-live="polite"
+     aria-label="Current assessment trend: Low">
+  <div class="gauge-segments" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="gauge-readout">
+    <strong id="gauge-label">LOW</strong>
+    <span>current grade</span>
+  </div>
+</div>
     </div>
 
-    <div id="progress" class="progress" aria-label="Assessment progress"></div>
+
 
     <div class="question-stage">
       <div id="question-content"></div>
@@ -82,6 +96,12 @@
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 

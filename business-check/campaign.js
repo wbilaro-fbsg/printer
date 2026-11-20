@@ -6,60 +6,59 @@
       name:"Flexibility",
       kicker:"CONTRACT FLEXIBILITY",
       options:[
-        "We're locked into a contract that no longer suits how we work.",
-        "Changing the number of devices isn't straightforward."
+        "Our long-term contract no longer fits our business needs",
+        "Changing the number of devices means renegotiating or waiting"
       ]
     },
     {
       name:"Cost visibility",
       kicker:"COST VISIBILITY",
       options:[
-        "Our monthly printing costs are difficult to predict.",
-        "We sometimes face unexpected print or support charges."
+        "We don't have a clear view of our monthly printing costs",
+        "Toner, colour printing and service add unexpected costs"
       ]
     },
     {
       name:"Admin workload",
       kicker:"ADMIN WORKLOAD",
       options:[
-        "We deal with multiple vendors for devices, supplies and support.",
-        "Supply replenishment is mostly manual."
+        "We manage different vendors for printers, supplies and repairs",
+        "Someone must manually monitor and replenish supplies"
       ]
     },
     {
       name:"IT support",
       kicker:"IT SUPPORT",
       options:[
-        "Our internal IT resources are limited.",
-        "It takes too long to resolve printer or PC support issues."
+        "We don't have dedicated IT support, or our IT team is stretched",
+        "Getting help with device issues takes longer than expected"
       ]
     },
     {
       name:"Office setup",
       kicker:"OFFICE SETUP",
       options:[
-        "Our current devices do not always match how our teams work.",
-        "We keep more print supplies on hand than we really need."
+        "Our current device doesn't fully match our print needs",
+        "We store extra paper and toner in case supplies run out"
       ]
     },
     {
       name:"Document security",
       kicker:"DOCUMENT SECURITY",
       options:[
-        "Sensitive documents can sit unattended at shared printers.",
-        "We have limited visibility or control over print usage."
+        "Sensitive documents may be left unattended at the device",
+        "We have limited visibility of print, scan and document access"
       ]
     },
     {
       name:"Manual work",
       kicker:"MANUAL WORK",
       options:[
-        "Documents still need too much manual organising after scanning.",
-        "Information is fragmented across paper, folders or disconnected systems."
+        "We manually name, organise and store scanned documents",
+        "Information is scattered across documents, inboxes and spreadsheets"
       ]
     }
   ];
-
   const state={
     screen:"intro",
     index:0,
@@ -73,6 +72,14 @@
   const stepCount=document.getElementById("step-count");
   const issueCount=document.getElementById("issue-count");
   const progress=document.getElementById("progress");
+
+  /* gauge-dom-placement-final */
+  const assessmentGauge=document.getElementById("assessment-gauge");
+  const questionStage=document.querySelector("#screen-assessment .question-stage");
+
+  if(assessment && assessmentGauge && questionStage){
+    assessment.insertBefore(assessmentGauge,questionStage);
+  }
   const back=document.getElementById("back-btn");
   const next=document.getElementById("next-btn");
 
@@ -101,21 +108,67 @@
 
   function renderProgress(){
     progress.innerHTML=questions.map((_,i)=>{
-      const cls=i<state.index?"done":i===state.index?"current":"";
-      return `<span class="${cls}" aria-hidden="true"></span>`;
+      const fill=i<state.index ? 100 : 0;
+      const status=i<state.index?"done":i===state.index?"current":"";
+      return `<span class="${status}" aria-hidden="true"><b>${i+1}</b><em>${questions[i].name}</em><i style="--fill:${fill}%"></i></span>`;
     }).join("");
+
+    const current=progress.querySelector("span.current i");
+    const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if(current){
+      requestAnimationFrame(()=>{
+        requestAnimationFrame(()=>{
+          current.style.setProperty("--fill","100%");
+        });
+      });
+    }
   }
 
   function updateCounter(){
-    const n=issueTotal();
-    issueCount.textContent=`${n} ${n===1?"issue":"issues"} identified`;
+    const n=state.selected.slice(0,state.index+1).flat().filter(Boolean).length;
+
+    if(assessment){
+      const bgState=n>=8 ? "high" : n>=4 ? "watch" : "good";
+      assessment.dataset.bgState=bgState;
+    }
+    const gauge=document.getElementById("assessment-gauge");
+    if(!gauge)return;
+    const angle=-55+(Math.max(0,Math.min(n,14))/14)*110;
+    gauge.style.setProperty("--needle", angle + "deg");
   }
 
   function showScreen(name){
-    intro.hidden=name!=="intro";
-    assessment.hidden=name!=="assessment";
-    result.hidden=name!=="result";
-    state.screen=name;
+    const screens={intro,assessment,result};
+    const current=screens[state.screen];
+    const nextScreen=screens[name];
+    const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if(reduced || !current || current===nextScreen){
+      intro.hidden=name!=="intro";
+      assessment.hidden=name!=="assessment";
+      result.hidden=name!=="result";
+      state.screen=name;
+      return;
+    }
+
+    current.classList.add("screen-leaving");
+
+    setTimeout(()=>{
+      intro.hidden=name!=="intro";
+      assessment.hidden=name!=="assessment";
+      result.hidden=name!=="result";
+
+      current.classList.remove("screen-leaving");
+      nextScreen.classList.add("screen-entering");
+      state.screen=name;
+
+      requestAnimationFrame(()=>{
+        requestAnimationFrame(()=>{
+          nextScreen.classList.remove("screen-entering");
+        });
+      });
+    },140);
   }
 
   function startAssessment(){
@@ -160,7 +213,20 @@
   }
 
   function renderQuestion(){
-    const q=questions[state.index];
+    const q=questions[state.index]; assessment.dataset.step=String(state.index+1);
+
+    const stage=document.querySelector("#screen-assessment .question-stage");
+    const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if(stage && !reduced){
+      stage.classList.remove("question-settle");
+      void stage.offsetWidth;
+      stage.classList.add("question-settle");
+
+      setTimeout(()=>{
+        stage.classList.remove("question-settle");
+      },180);
+    }
     stepCount.textContent=String(state.index+1).padStart(2,"0")+" / 07";
 
     questionContent.innerHTML=`
@@ -197,8 +263,8 @@
 
         <p class="question-guidance" aria-live="polite">
           ${state.answered[state.index]
-            ?"Selection made. You can continue."
-            :"Select at least one answer to continue"}
+            ?"Ready to continue"
+            :"Select an answer to continue"}
         </p>
       </section>
     `;
@@ -269,7 +335,7 @@
 
           guidance.textContent=
             state.answered[state.index]
-              ?"Selection made. You can continue."
+              ?"Ready to continue"
               :"Select an answer to continue";
 
           guidance.classList.toggle(
@@ -318,184 +384,86 @@
   function outcomeFor(score){
     if(score<=3){
       return {
-        band:"0–3 ISSUES",
-        title:"Your operations are mostly under control.",
-        copy:"Operations appear broadly manageable, but there may still be opportunities to improve cost visibility and your total cost of ownership.",
-        cta:"Calculate your potential savings",
+        key:"good",
+        icon:"😌",
+        label:"Mostly under control",
+        headline:"Mostly under control.",
+        copy:"Small costs can be easy to miss, so flexible plans as short as 12 months are worth considering before your next printer renewal or upgrade.",
+        cta:"See Your True Office Cost",
         url:"https://campaign-fbsg.fujifilm.com/flexone/hardware#savings"
       };
     }
 
     if(score<=7){
       return {
-        band:"4–7 ISSUES",
-        title:"Small inefficiencies are starting to add up.",
-        copy:"Several operational friction points may be creating unnecessary cost, administration or support demands.",
-        cta:"Compare FleXOne plans",
-        url:"https://campaign-fbsg.fujifilm.com/flexone/pricing#comparison"
+        key:"watch",
+        icon:"🤔",
+        label:"Quietly adding up",
+        headline:"Quietly adding up.",
+        copy:"The costs are there, just spread across vendors, bills and your team's time. One consolidated plan could free up budget and hours.",
+        cta:"Compare FleXOne Plans",
+        url:"https://campaign-fbsg.fujifilm.com/flexone/pricing"
       };
     }
 
     return {
-      band:"8+ ISSUES",
-      title:"Your operations are ready for simplification.",
-      copy:"A more consolidated and predictable approach could reduce administrative effort and make printing, supplies and support easier to manage.",
-      cta:"Find your FleXOne plan",
-      url:"https://campaign-fbsg.fujifilm.com/flexone/home#plan"
+      key:"action",
+      icon:"⚠️",
+      label:"Time to simplify",
+      headline:"Time to simplify.",
+      copy:"Your office is working harder than it should. Multiple vendors, higher bills and more to manage. A predictable monthly fee, scheduled supplies and support can lighten the load.",
+      cta:"Find Your FleXOne Plan",
+      url:"https://campaign-fbsg.fujifilm.com/flexone/pricing"
     };
   }
-
   function renderResult(){
     const score=issueTotal();
     const outcome=outcomeFor(score);
     const priorities=selectedCategories();
-
-    let scoreState;
-
-    if(score<=3){
-      scoreState={
-        key:"good",
-        label:"LOOKING GOOD",
-        icon:"check",
-        headline:"Your operations are in good shape.",
-        action:"There is still room to make costs and support more predictable."
-      };
-    }else if(score<=7){
-      scoreState={
-        key:"watch",
-        label:"WORTH IMPROVING",
-        icon:"arrow",
-        headline:"Small inefficiencies are adding up.",
-        action:"A more structured print plan could remove unnecessary friction."
-      };
-    }else if(score<=10){
-      scoreState={
-        key:"action",
-        label:"ACTION RECOMMENDED",
-        icon:"alert",
-        headline:"There is a clear opportunity to simplify.",
-        action:"Your assessment points to several areas where FleXOne could reduce operational effort."
-      };
-    }else{
-      scoreState={
-        key:"high",
-        label:"HIGH OPERATIONAL FRICTION",
-        icon:"alert",
-        headline:"Time to simplify.",
-        action:"Multiple friction points are affecting everyday print operations."
-      };
-    }
-
-    const maxScore=questions.length*2;
-    const scorePercent=Math.max(
-      0,
-      Math.min(100,Math.round((score/maxScore)*100))
-    );
-
-    const topPriorities=priorities.slice(0,3);
-
-    const iconMarkup=
-      scoreState.icon==="check"
-        ? '<span class="score-icon-mark score-icon-check" aria-hidden="true"></span>'
-        : scoreState.icon==="arrow"
-          ? '<span class="score-icon-mark score-icon-arrow" aria-hidden="true">↗</span>'
-          : '<span class="score-icon-mark score-icon-alert" aria-hidden="true">!</span>';
-
-    showScreen("result");
-
+    const topPriorities=[...priorities,...questions.map(q=>q.name).filter(name=>!priorities.includes(name))].slice(0,3);
+    showScreen("result"); document.getElementById("screen-result").style.setProperty("--result-top",document.getElementById("screen-result").getBoundingClientRect().top+"px");
     result.innerHTML=`
-      <div class="result scorecard scorecard-${scoreState.key}">
-
-        <div class="scorecard-meter">
-
+      <div class="result scorecard scorecard-${outcome.key}">
+        <div class="scorecard-meter result-state-panel">
           <div class="scorecard-topline">
-            <div class="score-status-icon">
-              ${iconMarkup}
-            </div>
-
-            <div>
-              <p class="score-status">${scoreState.label}</p>
-              <p class="score-fraction">
-                <strong>${score}</strong>
-                <span>/ ${maxScore}</span>
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="score-bar"
-            role="img"
-            aria-label="${score} of ${maxScore} operational issues identified"
-          >
-            <span style="width:${scorePercent}%"></span>
-          </div>
-
-          <div class="score-scale" aria-hidden="true">
-            <span>LOW</span>
-            <span>MODERATE</span>
-            <span>HIGH</span>
+            <div class="score-status-icon result-emoticon" aria-hidden="true">${outcome.icon}</div>
+            <div class="severity-copy"><p class="score-status">${outcome.label}</p><p class="severity-kicker">Operational friction</p><div class="severity-meter" style="--gauge:${Math.round((score/(questions.length*2))*100)}%" aria-label="${outcome.label}"></div><div class="severity-scale"><small>Low</small><small>Moderate</small><small>High</small></div></div>
           </div>
         </div>
-
         <div class="result-copy">
-
-          <p class="result-eyebrow">
-            YOUR PERSONALISED RESULT
-          </p>
-
-          <h2 id="result-title">
-            ${scoreState.headline}
-          </h2>
-
-          <p class="result-lead">
-            ${scoreState.action}
-          </p>
-
-          ${
-            topPriorities.length
-              ? `
-                <div class="result-priorities">
-                  <p class="priority-label">
-                    YOUR BIGGEST OPPORTUNITIES
-                  </p>
-
-                  <div class="priority-chips">
-                    ${topPriorities
-                      .map(x=>`<span>${x}</span>`)
-                      .join("")}
-                  </div>
-                </div>
-              `
-              : ""
-          }
-
+          <p class="result-eyebrow">Your assessment result</p>
+          <h2 id="result-title">${outcome.headline}</h2>
+          <p class="result-lead">${outcome.copy}</p>
+          ${topPriorities.length ? `<div class="result-priorities"><p class="priority-label">YOUR PRIORITIES</p><div class="priority-chips">${topPriorities.map(x=>`<span>${x}</span>`).join("")}</div></div>` : ""}
           <div class="result-actions">
-            <a
-              class="primary-btn result-primary"
-              href="${outcome.url}"
-              data-track="assessment-result-cta"
-            >
-              ${outcome.cta} →
-            </a>
-
-            <button
-              id="retake-btn"
-              class="text-btn"
-              type="button"
-              data-track="assessment-retake"
-            >
-              Retake assessment
-            </button>
+            <a class="primary-btn result-primary" href="${outcome.url}" target="_blank" rel="noopener noreferrer" data-track="assessment-result-cta">${outcome.cta} →</a>
+            <button id="retake-btn" class="text-btn" type="button" data-track="assessment-retake">Retake</button>
           </div>
-
         </div>
       </div>
     `;
+    document.getElementById("retake-btn").addEventListener("click",resetAssessment);
 
-    document
-      .getElementById("retake-btn")
-      .addEventListener("click",resetAssessment);
+    /* Value-driven result gauge pointer */
+    const resultMeter=result.querySelector(".severity-meter");
+    if(resultMeter){
+      const target=Math.round((score/(questions.length*2))*100);
+      const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+      resultMeter.style.setProperty("--pointer","0%");
+
+      if(reduced){
+        resultMeter.style.setProperty("--pointer",target+"%");
+      }else{
+        setTimeout(()=>{
+          requestAnimationFrame(()=>{
+            requestAnimationFrame(()=>{
+              resultMeter.style.setProperty("--pointer",target+"%");
+            });
+          });
+        },220);
+      }
+    }
     announceScreen("Your FleXOne Recommendation");
     focusHeading("#result-title");
   }
@@ -508,7 +476,7 @@
         input.checked=false;
       });
     showScreen("intro");
-    announceScreen("What Should Your Operations Improve Next?");
+    announceScreen("What Should Your Business Fix Before It Costs More?");
     requestAnimationFrame(()=>document.getElementById("start-btn").focus());
   }
 
@@ -524,7 +492,7 @@
     if(!hint){
       hint=document.createElement("p");
       hint.className="start-selection-hint";
-      hint.textContent="Select at least one answer to continue";
+      hint.textContent="Select an answer to continue";
       introStart.insertAdjacentElement("beforebegin",hint);
     }
 
@@ -578,7 +546,7 @@ if(step1Preview && step1Start){
 
     if(hint){
       hint.textContent=answered
-        ?"Selection made. You can continue."
+        ?"Ready to continue"
         :"Select an answer to continue";
 
       hint.classList.toggle(
@@ -620,11 +588,6 @@ document.getElementById("start-btn").addEventListener("click",startAssessment);
 
   renderProgress();
 })();
-
-
-
-
-
 
 
 
